@@ -7,3 +7,306 @@
  Template: twentytwentyfive
  Version: 1.0.0
 */
+
+/* Base Color Palette */
+:root {
+    /* Primary Colors */
+    --primary-color: #dc4e77;
+    --primary-hover: #c74468;
+
+    /* Secondary Colors */
+    --secondary-color: #8e3257;
+    --secondary-hover: #762a47;
+
+    /* Accent Colors */
+    --accent-light: #f28ca4;
+    --accent-teal: #4edcb3;
+    --accent-blue: #6cb8f7;
+    --accent-yellow: #fbc02d;
+
+    /* Backgrounds */
+    --light-bg: #fff5f8;
+    --dark-bg: #1f1f1f;
+    --mid-bg: #fdf0f4;
+
+    /* Text Colors */
+    --primary-text: #1a1a1a;
+    --secondary-text: #575757;
+    --muted-text: #8c8c8c;
+
+    /* Neutral Colors */
+    --border-color: #e4e4e4;
+    --input-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Alerts */
+    --success-color: #4edc77;
+    --success-bg: #d9f7e9;
+    --error-color: #dc4e77;
+    --error-bg: #ffd9e1;
+    --warning-color: #f9a825;
+    --warning-bg: #fff7d9;
+}
+
+/* General Styles */
+body {
+    background-color: var(--light-bg);
+    color: var(--primary-text);
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Link Styles */
+a {
+    color: var(--accent-light)!important;
+    text-decoration: none;
+    text-underline-offset: 0.1em;
+}
+
+a:hover {
+    color: var(--primary-color)!important;
+}
+
+/* Focus Styles */
+:where(.wp-site-blocks *:focus) {
+    outline-width: 2px;
+    outline-style: solid;
+}
+
+/* Navigation Menu */
+.wp-block-navigation {
+    background-color: var(--primary-color);
+}
+
+.wp-block-navigation a {
+    color: var(--input-bg);
+    text-transform: uppercase;
+    padding: 10px;
+}
+
+.wp-block-navigation a:hover {
+    background-color: var(--primary-hover);
+    border-radius: 4px;
+    color: var(--input-bg);
+}
+
+/* Headings (h1-h6) */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--primary-color);
+    font-family: 'Lato';
+}
+
+/* Increase line height for paragraphs, blockquotes, and captions */
+p, blockquote, caption, figcaption {
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+/* Button Styles */
+button {
+    background-color: var(--primary-color);
+    color: var(--input-bg);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Inputs and Textarea */
+input, textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 14px;
+    color: var(--primary-text);
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Alerts */
+.alert-success {
+    background-color: var(--success-bg);
+    color: var(--success-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert-error {
+    background-color: var(--error-bg);
+    color: var(--error-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.alert-warning {
+    background-color: var(--warning-bg);
+    color: var(--warning-color);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Block Patterns */
+.wp-block-patterns {
+    margin: 20px 0;
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--dark-bg);
+    color: var(--input-bg);
+    padding: 20px;
+    text-align: center;
+}
+
+.site-footer a {
+    color: var(--accent-teal);
+}
+
+.site-footer a:hover {
+    color: var(--accent-light);
+}
+
+/* Progressive Enhancement to Reduce Widows and Orphans */
+h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
+    text-wrap: pretty;
+}
+
+/* "More" Block Styling */
+.more-link {
+    display: block;
+}
+
+/* Increase the bottom margin on submenus */
+.wp-block-navigation .wp-block-navigation-submenu .wp-block-navigation-item:not(:last-child) {
+    margin-bottom: 3px;
+}
+
+/* Increase the outline offset on the parent menu items */
+.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content {
+    outline-offset: 4px;
+}
+
+/* Remove outline offset from submenus */
+.wp-block-navigation .wp-block-navigation-item ul.wp-block-navigation__submenu-container .wp-block-navigation-item__content {
+    outline-offset: 0;
+}
+
+/* Custom Utility Classes for Text and Background */
+.text-primary-color {
+    color: var(--primary-color);
+}
+
+.text-secondary-color {
+    color: var(--secondary-text);
+}
+
+.text-muted {
+    color: var(--muted-text);
+}
+
+.bg-primary-color {
+    background-color: var(--primary-color);
+}
+
+.bg-light-color {
+    background-color: var(--light-bg);
+}
+
+.bg-mid-color {
+    background-color: var(--mid-bg);
+}
+
+.bg-dark-color {
+    background-color: var(--dark-bg);
+    color: var(--input-bg);
+}
+
+/* Additional Utility Buttons */
+.btn-success {
+    background-color: var(--success-color);
+    color: var(--input-bg);
+}
+
+.btn-warning {
+    background-color: var(--warning-color);
+    color: var(--dark-bg);
+}
+
+.btn-accent {
+    background-color: var(--accent-teal);
+    color: var(--dark-bg);
+}
+
+/* General Header Styles */
+.site-header {
+    background-color: var(--dark-bg); /* Dark background for the header */
+    color: var(--input-bg); /* Light text color for better contrast */
+    padding: 20px 0;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.site-logo img {
+    max-width: 100%; /* Ensure the logo scales properly */
+    height: auto;
+}
+
+/* Site Navigation */
+.site-navigation {
+    display: flex;
+    justify-content: flex-end; /* Align menu items to the right */
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list li {
+    margin-left: 20px;
+}
+
+.nav-list li a {
+    color: var(--input-bg); /* Links in navigation use the light text color */
+    text-decoration: none;
+    text-transform: uppercase; /* Capitalize navigation links */
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects for Navigation Links */
+.nav-list li a:hover {
+    background-color: var(--primary-color); /* Background color changes on hover */
+    color: var(--input-bg); /* Text color changes to light on hover */
+    border-radius: 4px;
+}
+
+/* Active Navigation Item */
+.nav-list li a.current-menu-item {
+    color: var(--primary-color); /* Highlight active item with primary color */
+}
+
+/* Add a bottom border to the header for better separation */
+.site-header {
+    border-bottom: 2px solid var(--primary-color);
+}
