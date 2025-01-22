@@ -7,13 +7,13 @@ get_header(); ?>
     <div class="hero-section text-center py-5" style="background: var(--mid-bg); color: var(--input-bg); border-bottom: 2px solid var(--primary-color);">
         <div class="container">
             <h1 class="display-4" style="font-weight: bold; letter-spacing: 1px; color: var(--primary-text);">Welcome to <?php bloginfo('name'); ?></h1>
-            <p class="lead" style="font-size: 1.25rem; margin-bottom: 20px;">Your gateway to awesome content and ideas.</p>
+            <p class="lead" style="color:var(--muted-text);font-size: 1.25rem; margin-bottom: 20px;">Your gateway to awesome content and ideas.</p>
             <a href="#content" class="btn btn-light btn-lg" style="background-color: var(--input-bg); color: var(--primary-color); border: none; padding: 10px 30px; border-radius: 50px; transition: all 0.3s ease;">Explore More</a>
         </div>
     </div>
 
     <!-- Content Section -->
-    <div id="content" class="content-section py-5" style="background-color: var(--light-bg);">
+    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg);">
         <div class="container">
             <div class="row">
                 <?php if (have_posts()) : ?>
@@ -36,7 +36,7 @@ get_header(); ?>
                                     </p>
                                 </div>
                                 <div class="card-footer" style="background-color: var(--light-bg); text-align: center;">
-                                    <a href="<?php the_permalink(); ?>" class="btn btn-primary" style="background-color: var(--primary-color); color: var(--input-bg); border-radius: 20px; padding: 8px 20px; text-transform: uppercase; font-size: 0.9rem; transition: background-color 0.3s ease;">Read More</a>
+                                    <a href="<?php the_permalink(); ?>" class="btn" style="border:1px solid var(--dark-bg);background-color: var(--primary-color); color: var(--input-bg); border-radius: 20px; padding: 8px 20px; text-transform: uppercase; font-size: 0.9rem; transition: background-color 0.3s ease;">Read More</a>
                                 </div>
                             </div>
                         </div>

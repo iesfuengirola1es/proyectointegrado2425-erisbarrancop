@@ -1,29 +1,63 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php wp_head(); ?>
 </head>
-<body <?php body_class(); ?>>
-    <header class="site-header" style="background-color: var(--dark-bg); color: var(--input-bg);">
-        <div class="header-container">
+
+<body>
+    <?php wp_body_open(); ?>
+
+    <header class="site-header" style="background-color: var(--light-bg); color: var(--input-bg);">
+        <div class="header-container container d-flex align-items-center justify-content-between">
+            <!-- Site Logo -->
             <div class="site-logo">
-                <?php 
+                <?php
                 // Check if a custom logo exists and display it
-                if ( has_custom_logo() ) {
+                if (has_custom_logo()) {
                     the_custom_logo(); // Display custom logo if available
                 } else {
-                    // If no custom logo is set, display a fallback image
-                    echo '<img src="' . get_stylesheet_directory_uri() . '/images/together_logo515x190.png" alt="Site Logo" style="max-width: 200px; height: auto;" />';
+                    // Fallback image with proper alt text
+                    echo '<a href="' . esc_url(home_url('/')) . '">';
+                    echo '<img src="' . esc_url(get_stylesheet_directory_uri() . '/images/together_logo515x190.png') . '" alt="' . esc_attr(get_bloginfo('name')) . ' Logo" style="max-width: 200px; height: auto;" />';
+                    echo '</a>';
                 }
                 ?>
             </div>
-            <nav class="site-navigation">
-                <?php wp_nav_menu( array( 'theme_location' => 'primary', 'container' => false, 'menu_class' => 'nav-list' ) ); ?>
+
+            <!-- Site Navigation -->
+            <nav class="site-navigation" aria-label="Main Navigation">
+                <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'primary',
+                    'container' => false,
+                    'menu_class' => 'nav-list d-flex gap-3',
+                    'fallback_cb' => function () {
+                        // Query all public post types, including default ones
+                        $post_types = get_post_types(array(
+                            'public' => true, // Include public post types
+                        ), 'objects');
+
+                        echo '<ul class="nav-list">';
+
+                        // Add a default Home link
+                        echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+
+                        // Loop through each post type and add to the menu
+                        foreach ($post_types as $post_type) {
+                            // Check if the post type has an archive page
+                            if ($post_type->has_archive) {
+                                echo '<li><a href="' . esc_url(get_post_type_archive_link($post_type->name)) . '">' . esc_html($post_type->labels->name) . '</a></li>';
+                            }
+                        }
+
+                        echo '</ul>';
+                    },
+                ));
+                ?>
             </nav>
+
         </div>
     </header>
-    <?php wp_body_open(); ?>
-</body>
-</html>

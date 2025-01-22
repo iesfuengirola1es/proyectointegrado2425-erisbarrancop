@@ -27,12 +27,12 @@
     /* Backgrounds */
     --light-bg: #fff5f8;
     --dark-bg: #1f1f1f;
-    --mid-bg: #fdf0f4;
+    --mid-bg: #F3DEE5;
 
     /* Text Colors */
-    --primary-text: #1a1a1a;
+    --primary-text: #8B797E;
     --secondary-text: #575757;
-    --muted-text: #8c8c8c;
+    --muted-text: #bf8e9a;
 
     /* Neutral Colors */
     --border-color: #e4e4e4;
@@ -56,6 +56,10 @@ body {
     margin: 0;
     padding: 0;
 }
+
+
+
+
 
 /* Link Styles */
 a {
@@ -155,17 +159,16 @@ input:focus, textarea:focus {
     border-radius: 5px;
 }
 
-/* Block Patterns */
-.wp-block-patterns {
-    margin: 20px 0;
-}
 
 /* Footer */
 .site-footer {
     background-color: var(--dark-bg);
     color: var(--input-bg);
-    padding: 20px;
     text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;   
 }
 
 .site-footer a {
@@ -179,26 +182,6 @@ input:focus, textarea:focus {
 /* Progressive Enhancement to Reduce Widows and Orphans */
 h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
     text-wrap: pretty;
-}
-
-/* "More" Block Styling */
-.more-link {
-    display: block;
-}
-
-/* Increase the bottom margin on submenus */
-.wp-block-navigation .wp-block-navigation-submenu .wp-block-navigation-item:not(:last-child) {
-    margin-bottom: 3px;
-}
-
-/* Increase the outline offset on the parent menu items */
-.wp-block-navigation .wp-block-navigation-item .wp-block-navigation-item__content {
-    outline-offset: 4px;
-}
-
-/* Remove outline offset from submenus */
-.wp-block-navigation .wp-block-navigation-item ul.wp-block-navigation__submenu-container .wp-block-navigation-item__content {
-    outline-offset: 0;
 }
 
 /* Custom Utility Classes for Text and Background */
@@ -258,7 +241,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: auto;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -288,25 +271,75 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 .nav-list li a {
     color: var(--input-bg); /* Links in navigation use the light text color */
     text-decoration: none;
-    text-transform: uppercase; /* Capitalize navigation links */
+    text-transform: capitalize; /* Capitalize navigation links */
     font-weight: bold;
     padding: 10px 15px;
     transition: all 0.3s ease;
+    border-left: 1px solid var(--primary-color); /* Add a border between navigation items */
+    border-right: 1px solid var(--primary-color); /* Add a border between navigation items */
 }
 
 /* Hover Effects for Navigation Links */
 .nav-list li a:hover {
-    background-color: var(--primary-color); /* Background color changes on hover */
-    color: var(--input-bg); /* Text color changes to light on hover */
+    background-color: var(--mid-bg) !important; /* Background color changes on hover */
+    color: var(--secondary-hover) !important; /* Text color changes to light on hover */
     border-radius: 4px;
 }
 
 /* Active Navigation Item */
 .nav-list li a.current-menu-item {
-    color: var(--primary-color); /* Highlight active item with primary color */
+    color: var(--primary-color) !important; /* Highlight active item with primary color */
 }
 
-/* Add a bottom border to the header for better separation */
-.site-header {
-    border-bottom: 2px solid var(--primary-color);
+.py-5{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
+/* General Container Styles */
+.container {
+    max-width: 1000px; /* Constrain content width */
+    margin: 0 auto;
+    padding: 1rem; /* Add some padding for breathing space */
+}
+
+.container-fluid {
+    padding: 0 1.5rem; /* Minimal padding for fluid layouts */
+}
+
+/* Hero Section */
+.hero-section .container {
+    max-width: 800px; /* Center and limit hero content */
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Card Grid */
+.row.g-4 > [class*="col-"] {
+    padding: 0.75rem; /* Reduce gutter size */
+}
+
+/* Cards */
+.card {
+    margin: 0 auto; /* Center smaller cards */
+    width: auto; /* Adapt width to content */
+}
+
+.card-body {
+    padding: 1rem; /* Keep content compact */
+}
+
+.card-footer {
+    padding: 0.5rem; /* Tighten footer spacing */
+}
+
+/* Typography Adjustments */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
 }
