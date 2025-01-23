@@ -51,11 +51,12 @@
 
 /* General Styles */
 body {
-    background-color: var(--light-bg);
+    background-color: var(--light-bg) !important;
     color: var(--primary-text);
     font-family: 'Lato', sans-serif;
     margin: 0;
     padding: 0;
+    height: 100vh;
 }
 
 /* Link Styles */
@@ -165,7 +166,7 @@ input:focus, textarea:focus {
     position: fixed;
     bottom: 0;
     left: 0;
-    right: 0;   
+    right: 0;    
 }
 
 .site-footer a {
@@ -273,12 +274,13 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
     padding: 10px 20px; /* Consistent padding for clickable area */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     background-color: var(--mid-light-bg); /* Light background for default state */
-    border: 1px solid var(--primary-color); /* Consistent border color */
+    border-left: 1px solid var(--primary-color); /* Consistent border color */
+    border-right: 1px solid var(--primary-color); /* Consistent border color */
     border-radius: 6px; /* Modern rounded corners */
 }
 
 .nav-list li a:hover {
-    background-color: var(--primary-color); /* Primary color for hover background */
+    background: radial-gradient(circle, rgba(220,78,119,1) 12%, rgba(252,231,238,1) 89%, rgba(252,231,238,1) 100%);
     color: var(--light-bg) !important; /* Light text color for contrast */
     border-color: var(--primary-hover); /* Darker primary for border on hover */
     border-radius: 6px; /* Matches default for seamless transition */

@@ -8,20 +8,20 @@
                 <?php the_title(); ?>
             </h1>
             <p class="lead" style="font-size: 1.2rem; margin-bottom: 30px;">
-                Published on <?php the_date(); ?>
+                Published on <?php echo get_the_date(); ?>
             </p>
         </div>
     </div>
 
     <!-- Content Section -->
-    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg);">
+    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
         <div class="container">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <?php if (has_post_thumbnail()) : ?>
                             <div class="text-center mb-4">
-                                <?php the_post_thumbnail('large', ['class' => 'img-fluid', 'style' => 'border-radius: 10px;']); ?>
+                                <?php the_post_thumbnail('thumbnail', ['class' => 'img-fluid', 'style' => 'border-radius: 10px;']); ?>
                             </div>
                         <?php endif; ?>
                         <div class="post-content" style="color: var(--primary-text);">

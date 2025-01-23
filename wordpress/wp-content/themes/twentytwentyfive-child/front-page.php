@@ -15,7 +15,7 @@ get_header(); ?>
     </div>
 
     <!-- Content Section -->
-    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg);">
+    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
         <div class="container">
             <div class="row">
                 <?php if (have_posts()) : ?>
@@ -66,5 +66,7 @@ get_header(); ?>
         });
     });
 </script>
+
+
 
 <?php get_footer(); ?>

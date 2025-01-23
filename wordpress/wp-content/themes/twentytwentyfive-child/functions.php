@@ -38,7 +38,7 @@ function music_store_custom_post_types() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'singles'),
         'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
-        'menu_icon' => 'dashicons-format-audio', // Optional Dashicon for style
+        'menu_icon' => 'dashicons-format-audio', 
     ));
 
     // Register Albums Post Type
@@ -59,7 +59,7 @@ function music_store_custom_post_types() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'albums'),
         'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
-        'menu_icon' => 'dashicons-album', // Optional Dashicon for style
+        'menu_icon' => 'dashicons-album', 
     ));
 
     // Register Vinyls Post Type
@@ -83,6 +83,39 @@ function music_store_custom_post_types() {
         'menu_icon' => 'dashicons-sos', 
     ));
 }
+
+// Register Artists Post Type
+register_post_type('artist', array(
+    'labels' => array(
+        'name' => __('Artists'),
+        'singular_name' => __('Artist'),
+        'add_new' => __('Add New Artist'),
+        'add_new_item' => __('Add New Artist'),
+        'edit_item' => __('Edit Artist'),
+        'new_item' => __('New Artist'),
+        'view_item' => __('View Artist'),
+        'search_items' => __('Search Artists'),
+        'not_found' => __('No Artists found'),
+        'not_found_in_trash' => __('No Artists found in Trash'),
+    ),
+    'public' => true,
+    'has_archive' => true,
+    'rewrite' => array('slug' => 'artists'),
+    'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
+    'menu_icon' => 'dashicons-star-filled', 
+));
+
+// // Add custom user role for Artists
+// function add_artist_role() {
+//     add_role('artist', __('Artist'), array(
+//         'read' => true,
+//         'edit_posts' => true,
+//         'delete_posts' => false,
+//         'publish_posts' => true,
+//         'upload_files' => true,
+//     ));
+// }
+// add_action('init', 'add_artist_role');
 
 // Hook into the 'init' action
 add_action('init', 'music_store_custom_post_types');
