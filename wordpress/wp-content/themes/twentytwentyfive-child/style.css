@@ -27,6 +27,7 @@
     /* Backgrounds */
     --light-bg: #fff5f8;
     --dark-bg: #1f1f1f;
+    --mid-light-bg: #fce7ee;
     --mid-bg: #F3DEE5;
 
     /* Text Colors */
@@ -56,10 +57,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
-
-
-
 
 /* Link Styles */
 a {
@@ -110,7 +107,7 @@ p, blockquote, caption, figcaption {
 /* Button Styles */
 button {
     background-color: var(--primary-color);
-    color: var(--input-bg);
+    color: var(--input-bg) !important;
     border: none;
     border-radius: 5px;
     padding: 10px 15px;
@@ -269,22 +266,25 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 }
 
 .nav-list li a {
-    color: var(--input-bg); /* Links in navigation use the light text color */
+    color: var(--primary-text); /* Neutral text color for default state */
     text-decoration: none;
     text-transform: capitalize; /* Capitalize navigation links */
     font-weight: bold;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
-    border-left: 1px solid var(--primary-color); /* Add a border between navigation items */
-    border-right: 1px solid var(--primary-color); /* Add a border between navigation items */
+    padding: 10px 20px; /* Consistent padding for clickable area */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    background-color: var(--mid-light-bg); /* Light background for default state */
+    border: 1px solid var(--primary-color); /* Consistent border color */
+    border-radius: 6px; /* Modern rounded corners */
 }
 
-/* Hover Effects for Navigation Links */
 .nav-list li a:hover {
-    background-color: var(--mid-bg) !important; /* Background color changes on hover */
-    color: var(--secondary-hover) !important; /* Text color changes to light on hover */
-    border-radius: 4px;
+    background-color: var(--primary-color); /* Primary color for hover background */
+    color: var(--light-bg) !important; /* Light text color for contrast */
+    border-color: var(--primary-hover); /* Darker primary for border on hover */
+    border-radius: 6px; /* Matches default for seamless transition */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
+
 
 /* Active Navigation Item */
 .nav-list li a.current-menu-item {
@@ -312,11 +312,6 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
     max-width: 800px; /* Center and limit hero content */
     margin: 0 auto;
     padding: 0 1rem;
-}
-
-/* Card Grid */
-.row.g-4 > [class*="col-"] {
-    padding: 0.75rem; /* Reduce gutter size */
 }
 
 /* Cards */
