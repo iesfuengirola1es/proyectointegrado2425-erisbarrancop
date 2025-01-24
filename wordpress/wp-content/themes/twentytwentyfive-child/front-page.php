@@ -1,12 +1,12 @@
-<?php
+<?php get_header(); ?>
 
-get_header(); ?>
-
-<div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-text); font-family: 'Lato', sans-serif;">
+<div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-text); font-family: 'Lato', sans-serif; height: 100vh; display: flex; flex-direction: column;">
     <!-- Hero Section -->
     <div class="hero-section text-center py-5" style="background: radial-gradient(circle, rgba(220,78,119,1) 0%, rgba(142,50,87,1) 100%); color: var(--light-bg); border-top-left-radius: 10px; border-top-right-radius: 10px;">
         <div class="container">
-            <h1 class="display-4" style="font-weight: bold; letter-spacing: 1px; margin-bottom: 20px;">Welcome to <?php bloginfo('name'); ?></h1>
+            <h1 class="display-4" style="font-weight: bold; letter-spacing: 1px; margin-bottom: 20px;">
+                Welcome to <?php bloginfo('name'); ?>
+            </h1>
             <p class="lead" style="font-size: 1.2rem; margin-bottom: 30px;">Your gateway to awesome content and ideas.</p>
             <a href="#content" class="btn btn-lg" style="background-color: var(--light-bg); color: var(--primary-color); padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
                 Explore More
@@ -14,8 +14,8 @@ get_header(); ?>
         </div>
     </div>
 
-    <!-- Content Section -->
-    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <!-- Scrollable Content Section -->
+    <div id="content" class="content-section py-5 flex-grow-1" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; overflow-y: auto;">
         <div class="container">
             <div class="row">
                 <?php if (have_posts()) : ?>
@@ -66,7 +66,5 @@ get_header(); ?>
         });
     });
 </script>
-
-
 
 <?php get_footer(); ?>

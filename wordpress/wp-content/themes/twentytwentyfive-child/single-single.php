@@ -14,7 +14,7 @@
     </div>
 
     <!-- Content Section -->
-    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding-top: 80px; padding-bottom: 80px;">
         <div class="container">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <div class="row">
@@ -24,7 +24,7 @@
                                 <?php the_post_thumbnail('thumbnail', ['class' => 'img-fluid', 'style' => 'border-radius: 10px;']); ?>
                             </div>
                         <?php endif; ?>
-                        <div class="post-content" style="color: var(--primary-text);">
+                        <div class="post-content" style="color: var(--primary-text); line-height: 1.8; padding-bottom: 20px;">
                             <?php the_content(); ?>
                         </div>
                     </div>

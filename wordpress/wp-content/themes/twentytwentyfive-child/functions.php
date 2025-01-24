@@ -120,3 +120,6 @@ register_post_type('artist', array(
 // Hook into the 'init' action
 add_action('init', 'music_store_custom_post_types');
 
+//artists-single.php artists-archive.php
+//albums-single.php albums-archive.php
+//vinyls-single.php vinyls-archive.php
