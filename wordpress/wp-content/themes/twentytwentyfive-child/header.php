@@ -57,7 +57,7 @@
                         foreach ($post_types as $post_type) {
                             if ($post_type->has_archive) {
                                 $archive_url = get_post_type_archive_link($post_type->name);
-                                $archive_class = ($archive_url === $current_url) ? 'current-menu-item' : '';
+                                $archive_class = ($archive_url === $current_url || is_singular($post_type->name)) ? 'current-menu-item' : '';
 
                                 echo '<li>';
                                 echo '<a href="' . esc_url($archive_url) . '" class="' . esc_attr($archive_class) . '">' . esc_html($post_type->labels->name) . '</a>';
@@ -67,8 +67,6 @@
 
                         echo '</ul>';
                     },
-
-
                 ));
                 ?>
             </nav>
