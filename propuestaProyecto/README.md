@@ -53,7 +53,7 @@ Crear una plataforma web en **WordPress** para la compra de música digital y f�
 - **MySQL**, gestionada a través de WordPress.  
 
 ### Plugins  
-- **`node-colour-extractor`** o **`extract-colors`** para la personalización visual.  
+- **`node-colour-extractor`** o **`extract-colors`** para la personalización visual. Y Advanced Custom Fields (ACF) para relaciones entre tipos de post personalizados.
 
 ## 🧰 Herramientas y recursos  
 - **XAMPP** como servidor local.  
