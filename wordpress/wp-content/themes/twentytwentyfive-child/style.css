@@ -311,7 +311,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 }
 
 .container-fluid {
-    padding: 0 1.5rem; /* Minimal padding for fluid layouts */
+    padding-bottom: 10rem; /* Minimal padding for fluid layouts */
 }
 
 /* Hero Section */
