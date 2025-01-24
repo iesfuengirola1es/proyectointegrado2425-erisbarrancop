@@ -123,3 +123,11 @@ add_action('init', 'music_store_custom_post_types');
 //artists-single.php artists-archive.php
 //albums-single.php albums-archive.php
 //vinyls-single.php vinyls-archive.php
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+function special_nav_class($classes, $item){
+     if( in_array('current-menu-item', $classes) ){
+             $classes[] = 'active ';
+     }
+     return $classes;
+}

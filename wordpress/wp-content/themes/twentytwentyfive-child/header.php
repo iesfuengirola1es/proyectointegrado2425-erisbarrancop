@@ -42,22 +42,35 @@
 
                         echo '<ul class="nav-list">';
 
-                        // Add a default Home link
-                        echo '<li><a href="' . esc_url(home_url('/')) . '">Home</a></li>';
+                        // Get the current URL
+                        $current_url = (is_ssl() ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+                        // Add a default Home link with active class logic on the <a>
+                        $home_url = home_url('/');
+                        $home_class = ($home_url === $current_url) ? 'current-menu-item' : '';
+
+                        echo '<li>';
+                        echo '<a href="' . esc_url($home_url) . '" class="' . esc_attr($home_class) . '">Home</a>';
+                        echo '</li>';
 
                         // Loop through each post type and add to the menu
                         foreach ($post_types as $post_type) {
-                            // Check if the post type has an archive page
                             if ($post_type->has_archive) {
-                                echo '<li><a href="' . esc_url(get_post_type_archive_link($post_type->name)) . '">' . esc_html($post_type->labels->name) . '</a></li>';
+                                $archive_url = get_post_type_archive_link($post_type->name);
+                                $archive_class = ($archive_url === $current_url) ? 'current-menu-item' : '';
+
+                                echo '<li>';
+                                echo '<a href="' . esc_url($archive_url) . '" class="' . esc_attr($archive_class) . '">' . esc_html($post_type->labels->name) . '</a>';
+                                echo '</li>';
                             }
                         }
 
                         echo '</ul>';
                     },
+
+
                 ));
                 ?>
             </nav>
-
         </div>
     </header>

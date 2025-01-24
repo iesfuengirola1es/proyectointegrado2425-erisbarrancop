@@ -274,33 +274,18 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
     padding: 10px 20px; /* Consistent padding for clickable area */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     background-color: linear-gradient(180deg, rgba(255,245,248,1) 0%, rgba(252,231,238,1) 64%); /* Light background for default state */
-    border-left: 1px solid var(--primary-color); /* Consistent border color */
-    border-right: 1px solid var(--primary-color); /* Consistent border color */
-    border-radius: 6px; /* Modern rounded corners */
     position: relative; /* To position the pseudo-element */
     overflow: hidden; /* Ensures pseudo-element doesn't overflow */
+    
 }
 
-.nav-list li a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 2px; /* Thickness of the bottom border */
-    width: 0;
-    background: linear-gradient(to right, rgba(220,78,119,0), rgba(220,78,119,1)); /* Fading effect */
-    transition: width 0.3s ease; /* Smooth width transition */
-}
-
-.nav-list li a:hover::after {
-    width: 100%; /* Expand the width on hover */
-}
 
 .nav-list li a:hover {
-    background: radial-gradient(circle, rgba(220,78,119,1) 12%, rgba(252,231,238,1) 89%, rgba(252,231,238,1) 100%);
+    background: radial-gradient(circle, rgba(220,78,119,1) 12%, rgba(245, 169, 194) 90%, rgb(245, 169, 194) 100%);
     color: var(--light-bg) !important; /* Light text color for contrast */
     border-color: var(--primary-hover); /* Darker primary for border on hover */
-    border-radius: 6px; /* Matches default for seamless transition */
+    border-radius: 20px; /* Matches default for seamless transition */
+    box-shadow: 0 4px 6px var(--secondary-color); /* Add a drop shadow */
 }
 
 
@@ -308,7 +293,9 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 
 /* Active Navigation Item */
 .nav-list li a.current-menu-item {
-    color: var(--primary-color) !important; /* Highlight active item with primary color */
+    
+    border-radius: 20px; /* Matches default for seamless transition */
+    box-shadow: 0 4px 6px var(--secondary-color); /* Add a drop shadow */
 }
 
 .py-5{
