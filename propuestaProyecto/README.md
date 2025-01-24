@@ -71,7 +71,9 @@ Crear una plataforma web en **WordPress** para la compra de música digital y f�
 - 🌐 [Bootstrap Documentation](https://getbootstrap.com/)  
 - 🌐 [Tailwind CSS Documentation](https://tailwindcss.com/)  
 - 🌐 [NPM - Extract Colors](https://www.npmjs.com/package/extract-colors)  
-- 🌐 [Stack Overflow y otros foros técnicos](https://stackoverflow.com/)  
+- 🌐 [Advanced Custom Fields Plugin](https://www.advancedcustomfields.com)
+- 🌐 [Stack Overflow y otros foros técnicos](https://stackoverflow.com/) 
+   
 
 ---
 
