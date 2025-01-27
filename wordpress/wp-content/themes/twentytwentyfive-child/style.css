@@ -284,6 +284,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
     background: radial-gradient(circle, rgba(220,78,119,1) 12%, rgba(245, 169, 194) 90%, rgb(245, 169, 194) 100%);
     color: var(--light-bg) !important; /* Light text color for contrast */
     border-color: var(--primary-hover); /* Darker primary for border on hover */
+    transition: background-color 1s ease, color 0.5s ease, border-color 1s ease;
     border-radius: 20px; /* Matches default for seamless transition */
     box-shadow: 0 4px 6px var(--secondary-color); /* Add a drop shadow */
 }

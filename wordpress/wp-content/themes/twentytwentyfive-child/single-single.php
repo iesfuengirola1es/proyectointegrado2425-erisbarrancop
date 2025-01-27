@@ -1,4 +1,7 @@
-<?php get_header(); ?>
+<?php get_header(); 
+$genre = get_field('genre');
+$duration = get_field('duration');
+?>
 
 <div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-text); font-family: 'Lato', sans-serif;">
     <!-- Hero Section -->
@@ -31,7 +34,15 @@
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="post-content" style="color: var(--primary-text); line-height: 1.8; padding-bottom: 20px;">
-                            <?php the_content(); ?>
+                            <?php 
+                            if ($genre) {
+                                echo '<p><strong>Genre:</strong> ' . esc_html($genre) . '</p>';
+                            }
+                            
+                            if ($duration) {
+                                echo '<p><strong>Duration:</strong> ' . esc_html($duration) . '</p>';
+                            }
+                            the_content(); ?>
                         </div>
                     </div>
                 </div>
