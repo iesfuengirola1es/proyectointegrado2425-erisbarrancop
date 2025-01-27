@@ -23,7 +23,7 @@
                 <option value="date" <?php echo (isset($_GET['sort']) && $_GET['sort'] === 'date') ? 'selected' : ''; ?>>Sort by Date</option>
             </select>
         </div>
-    </div>
+    </div>  
             <div class="d-flex flex-wrap justify-content-center gap-3" id="items-container">
                 <?php
                 // Determine the sorting method
