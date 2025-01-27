@@ -67,8 +67,11 @@
 
                         echo '</ul>';
                     },
+                    
                 ));
+                
                 ?>
+                
             </nav>
         </div>
     </header>
