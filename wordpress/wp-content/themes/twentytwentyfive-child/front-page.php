@@ -8,7 +8,7 @@
                 Welcome to <?php bloginfo('name'); ?>
             </h1>
             <p class="lead" style="font-size: 1.2rem; margin-bottom: 30px;">Your gateway to awesome content and ideas.</p>
-            <a href="#content" class="btn btn-lg" style="background-color: var(--light-bg); color: var(--primary-color); padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
+            <a href="#content" class="btn btn-lg" style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
                 Explore More
             </a>
         </div>

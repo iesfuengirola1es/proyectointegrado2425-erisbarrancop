@@ -60,14 +60,15 @@ body {
 }
 
 /* Link Styles */
-a {
-    color: var(--accent-light)!important;
+.hero-section a {
+    color: var(--input-bg)!important;
     text-decoration: none;
     text-underline-offset: 0.1em;
 }
 
-a:hover {
-    color: var(--primary-color)!important;
+.hero-section a:hover {
+    color: var(--accent-light)!important;
+    transition: color 0.5s ease;
 }
 
 /* Focus Styles */
@@ -267,7 +268,7 @@ h1, h2, h3, h4, h5, h6, blockquote, caption, figcaption, p {
 }
 
 .nav-list li a {
-    color: var(--primary-text); /* Neutral text color for default state */
+    color: var(--primary-color); /* Neutral text color for default state */
     text-decoration: none;
     text-transform: capitalize; /* Capitalize navigation links */
     font-weight: bold;
@@ -347,15 +348,27 @@ p {
     line-height: 1.6;
 }
 
-.content-section .tracklist #tracklist-content:hover{
+.content-section .tracklist #tracklist-content {
+    font-family: 'Lato', sans-serif;
+}
+
+.content-section .tracklist #tracklist-content:hover {
     box-shadow: inset 0 2px 4px var(--accent-light) !important;
     transition: box-shadow 0.3s ease, color 0.3s ease, background-color 0.8s ease-in-out;
     background-color: var(--mid-light-bg) !important;
-  }
+}
 
-.content-section .info-box:hover{
+.content-section #genre-content:hover {
     box-shadow: inset 0 2px 4px var(--accent-light) !important;
     color: var(--primary-color) !important;
     transition: box-shadow 0.3s ease, color 0.3s ease, background-color 0.8s ease-in-out;
     background-color: var(--mid-light-bg) !important;
-  }
+}
+
+.content-section #duration-content:hover {
+    box-shadow: inset 0 2px 4px var(--accent-light) !important;
+    color: var(--primary-color) !important;
+    transition: box-shadow 0.3s ease, color 0.3s ease, background-color 0.8s ease-in-out;
+    background-color: var(--mid-light-bg) !important;
+}
+  

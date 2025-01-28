@@ -33,16 +33,22 @@ $artist_location = get_field('location');
                     <div class="col-md-8 offset-md-2">
                         <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
 
-                            <?php 
+                             <?php 
                             // Display genre and location
                             if ($genre || $artist_location) {
-                                echo '<div class="info-box mb-4" style="background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
+                                echo '<div class="row mb-4">'; // Added mb-4 for spacing
                                 if ($genre) {
-                                    echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Genre:</strong> ' . esc_html($genre) . '</p>';
+                                    echo '<div class="col-md-6 mt-4">';
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">Genre:</h4>';
+                                    echo '<div id="genre-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($genre) . '</div>';
+                                    echo '</div>';
                                 }
                                 
                                 if ($artist_location) {
-                                    echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Location:</strong> ' . esc_html($artist_location) . '</p>';
+                                      echo '<div class="col-md-6 mt-4">';
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">Location:</h4>';
+                                      echo '<div id="location-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($artist_location) . '</div>';
+                                    echo '</div>';
                                 }
                                 echo '</div>';
                             }

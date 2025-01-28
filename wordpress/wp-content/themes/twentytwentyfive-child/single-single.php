@@ -24,6 +24,19 @@ $duration = get_field('duration');
                     <p class="lead mt-3" style="font-size: 1.2rem;">
                         Released on <?php echo get_the_date(); ?>
                     </p>
+                    <?php 
+                    // Get related artist field
+                    $related_artist = get_field('related_artist');
+                    if ($related_artist): 
+                        foreach ($related_artist as $artist): ?>
+                            <p class="mt-3" style="font-size: 1.2rem;">
+                                by <a href="<?php echo get_permalink($artist->ID); ?>" style="color: var(--primary-hover); text-decoration: none; font-weight: bold;">
+                                    <?php echo get_the_title($artist->ID); ?>
+                                </a>
+                            </p>
+                        <?php endforeach; 
+                    endif; 
+                    ?>
                 </div>
             </div>
         </div>
@@ -36,22 +49,26 @@ $duration = get_field('duration');
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
-                            <?php 
-                            // Display genre and duration
-                            if ($genre || $duration) {
-                                echo '<div class="info-box mb-4" style="background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover);">';
-                                if ($genre) {
-                                    echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Genre:</strong> ' . esc_html($genre) . '</p>';
-                                }
-                                if ($duration) {
-                                    echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Duration:</strong> ' . esc_html($duration) . '</p>';
-                                }
-                                echo '</div>';
+                           <?php 
+                        if ($genre || $duration) {
+                            echo '<div class="row mb-4">'; // Added mb-4 to the row
+                            if ($genre) {
+                                echo '<div class="col-md-6 mt-4">'; 
+                                echo '<h4 class="mb-3" style="font-weight: bold;">Genre:</h4>';
+                                echo '<div id="genre-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($genre) . '</div>';
+                                 echo '</div>';
                             }
+                            
+                            if ($duration) {
+                                echo '<div class="col-md-6 mt-4">'; 
+                                echo '<h4 class="mb-3" style="font-weight: bold;">Duration:</h4>';
+                                echo '<div id="duration-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($duration) . '</div>';
+                                  echo '</div>';
+                            }
+                            echo '</div>'; 
+                        }
 
-                            // Display content
-                            the_content(); 
-                            ?>
+                        the_content(); ?>
                         </div>
                     </div>
                 </div>
