@@ -1,10 +1,10 @@
 <?php get_header(); 
 $genre = get_field('genre');
 $duration = get_field('duration');
-$tracklist = get_field('album_tracklist'); // Retrieve the tracklist field
+$tracklist = get_field('album_tracklist');
 ?>
 
-<div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-text); font-family: 'Lato', sans-serif;">
+<div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-hover); font-family: 'Lato', sans-serif;">
     <!-- Hero Section -->
     <div class="hero-section py-5 d-flex align-items-center" style="background: radial-gradient(circle, rgba(220,78,119,1) 0%, rgba(142,50,87,1) 100%); color: var(--light-bg); border-top-left-radius: 10px; border-top-right-radius: 10px;">
         <div class="container">
@@ -36,7 +36,7 @@ $tracklist = get_field('album_tracklist'); // Retrieve the tracklist field
 
                             <?php 
                             if ($genre || $duration) {
-                                echo '<div class="info-box mb-4" style="background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.5s ease">';
+                                echo '<div class="info-box mb-4" style="background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease">';
                                 if ($genre) {
                                     echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Genre:</strong> ' . esc_html($genre) . '</p>';
                                 }
@@ -50,7 +50,7 @@ $tracklist = get_field('album_tracklist'); // Retrieve the tracklist field
                             if ($tracklist) {
                                 echo '<div class="tracklist mt-4">';
                                 echo '<h4 class="mb-3" style="font-weight: bold;">Tracklist:</h4>';
-                                echo '<pre id="tracklist-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.5s ease">' . esc_html($tracklist) . '</pre>';
+                                echo '<pre id="tracklist-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease">' . esc_html($tracklist) . '</pre>';
                                 echo '</div>';
                             }
 

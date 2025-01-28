@@ -3,7 +3,7 @@ $genre = get_field('artist_genre');
 $artist_location = get_field('location');
 ?>
 
-<div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-text); font-family: 'Lato', sans-serif; ">
+<div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-hover); font-family: 'Lato', sans-serif;">
     <!-- Hero Section -->
     <div class="hero-section py-5 d-flex align-items-center" style="background: radial-gradient(circle, rgba(220,78,119,1) 0%, rgba(142,50,87,1) 100%); color: var(--light-bg); border-top-left-radius: 10px; border-top-right-radius: 10px;">
         <div class="container">
@@ -12,12 +12,14 @@ $artist_location = get_field('location');
                     <div class="col-md-4 text-center text-md-start">
                         <?php the_post_thumbnail('large', [
                             'class' => 'img-fluid',
-                            'style' => 'border-radius: 10px; max-height: 300px; object-fit: cover;',
+                            'style' => 'border-radius: 10px; max-height: 300px; object-fit: cover; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);',
                         ]); ?>
                     </div>
                 <?php endif; ?>
                 <div class="col-md-8 d-flex flex-column justify-content-center text-center">
-                    <h1 class="display-4" style="font-weight: bold; letter-spacing: 1px;"><?php the_title(); ?></h1>
+                    <h1 class="display-4" style="font-weight: bold; letter-spacing: 1px; color: var(--light-bg); text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                        <?php the_title(); ?>
+                    </h1>
                 </div>
             </div>
         </div>
@@ -29,15 +31,22 @@ $artist_location = get_field('location');
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
-                        <div class="post-content" style="line-height: 1.8;">
+                        <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
+
                             <?php 
-                            if ($genre) {
-                                echo '<p><strong>Genre:</strong> ' . esc_html($genre) . '</p>';
+                            // Display genre and location
+                            if ($genre || $artist_location) {
+                                echo '<div class="info-box mb-4" style="background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
+                                if ($genre) {
+                                    echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Genre:</strong> ' . esc_html($genre) . '</p>';
+                                }
+                                
+                                if ($artist_location) {
+                                    echo '<p style="font-size: 1.2rem; margin-bottom: 10px;"><strong>Location:</strong> ' . esc_html($artist_location) . '</p>';
+                                }
+                                echo '</div>';
                             }
-                            
-                            if ($artist_location) {
-                                echo '<p><strong>Location:</strong> ' . esc_html($artist_location) . '</p>';
-                            }
+
                             the_content(); ?>
                         </div>
                     </div>
