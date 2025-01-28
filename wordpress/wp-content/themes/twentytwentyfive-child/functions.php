@@ -62,26 +62,26 @@ function music_store_custom_post_types() {
         'menu_icon' => 'dashicons-album', 
     ));
 
-    // Register Vinyls Post Type
-    register_post_type('vinyl', array(
-        'labels' => array(
-            'name' => __('Vinyls'),
-            'singular_name' => __('Vinyl'),
-            'add_new' => __('Add New Vinyl'),
-            'add_new_item' => __('Add New Vinyl'),
-            'edit_item' => __('Edit Vinyl'),
-            'new_item' => __('New Vinyl'),
-            'view_item' => __('View Vinyl'),
-            'search_items' => __('Search Vinyls'),
-            'not_found' => __('No Vinyls found'),
-            'not_found_in_trash' => __('No Vinyls found in Trash'),
-        ),
-        'public' => true,
-        'has_archive' => true,
-        'rewrite' => array('slug' => 'vinyls'),
-        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
-        'menu_icon' => 'dashicons-sos', 
-    ));
+    // // Register Vinyls Post Type
+    // register_post_type('vinyl', array(
+    //     'labels' => array(
+    //         'name' => __('Vinyls'),
+    //         'singular_name' => __('Vinyl'),
+    //         'add_new' => __('Add New Vinyl'),
+    //         'add_new_item' => __('Add New Vinyl'),
+    //         'edit_item' => __('Edit Vinyl'),
+    //         'new_item' => __('New Vinyl'),
+    //         'view_item' => __('View Vinyl'),
+    //         'search_items' => __('Search Vinyls'),
+    //         'not_found' => __('No Vinyls found'),
+    //         'not_found_in_trash' => __('No Vinyls found in Trash'),
+    //     ),
+    //     'public' => true,
+    //     'has_archive' => true,
+    //     'rewrite' => array('slug' => 'vinyls'),
+    //     'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
+    //     'menu_icon' => 'dashicons-sos', 
+    // ));
 }
 
 // Register Artists Post Type
