@@ -67,7 +67,7 @@ $artist_location = get_field('location');
                     // Query for associated Singles, Albums, and Vinyls
                     $artist_id = get_the_ID();
                     $args = [
-                        'post_type' => ['single', 'album', 'vinyl'],
+                        'post_type' => ['single', 'album'],
                         'meta_query' => [
                             [
                                 'key' => 'related_artist', // ACF field name
