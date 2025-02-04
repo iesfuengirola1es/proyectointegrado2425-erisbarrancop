@@ -1,0 +1,196 @@
+/* Custom Login Page Styles */
+
+:root {
+    /* Primary Colors */
+    --primary-color: #dc4e77;
+    --primary-hover: #c74468;
+
+    /* Secondary Colors */
+    --secondary-color: #8e3257;
+    --secondary-hover: #762a47;
+
+    /* Accent Colors */
+    --accent-light: #f28ca4;
+    --accent-teal: #4edcb3;
+    --accent-blue: #6cb8f7;
+    --accent-yellow: #fbc02d;
+
+    /* Backgrounds */
+    --light-bg: #fff5f8;
+    --dark-bg: #1f1f1f;
+    --mid-light-bg: #fce7ee;
+    --mid-bg: #F3DEE5;
+
+    /* Text Colors */
+    --primary-text: #6b5b5e;
+    --secondary-text: #444;
+    --muted-text: #bf8e9a;
+
+    /* Neutral Colors */
+    --border-color: #e4e4e4;
+    --input-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+
+    /* Alerts */
+    --success-color: #4edc77;
+    --success-bg: #d9f7e9;
+    --error-color: #dc4e77;
+    --error-bg: #ffd9e1;
+    --warning-color: #f9a825;
+    --warning-bg: #fff7d9;
+}
+
+/* General Login Page Styles */
+body.login {
+    background-color: var(--light-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+body.login div#login {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: var(--mid-light-bg);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px var(--shadow-color);
+}
+
+/* Logo Styling */
+body.login div#login h1 a {
+    background-image: url("images/together_logo515x190.png");
+    background-size: contain;
+    width: 320px;
+    height: 65px;
+    display: block;
+    margin: 0 auto 15px;
+}
+
+/* Login Form */
+body.login div#login form#loginform {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+/* Input Fields */
+body.login div#login form#loginform input {
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 6px;
+    color: var(--primary-text);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Focus effect */
+body.login div#login form#loginform input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 6px var(--primary-hover);
+    outline: none;
+}
+
+/* Remember Me Checkbox */
+body.login div#login form#loginform p.forgetmenot label {
+    color: var(--secondary-text);
+    font-size: 14px;
+}
+
+/* Ensure all buttons match login button styling */
+body.login div#login form p.submit input#wp-submit,
+body.login div#login form#registerform p.submit input#wp-submit,
+body.login div#login form#lostpasswordform p.submit input#wp-submit {
+    background-color: var(--primary-color) !important;
+    margin-top: 10px;
+    border: none !important;
+    padding: 2px 15px !important; /* Ensures all buttons have the same height */
+    border-radius: 6px !important;
+    color: var(--input-bg) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+}
+
+/* Hover effect for all buttons */
+body.login div#login form p.submit input#wp-submit:hover,
+body.login div#login form#registerform p.submit input#wp-submit:hover,
+body.login div#login form#lostpasswordform p.submit input#wp-submit:hover {
+    background: var(--primary-hover) !important;
+    transform: translateY(2px) !important;
+    box-shadow: inset 0 -2px 4px var(--secondary-hover) !important;
+    
+}
+
+
+/* Login Links */
+body.login div#login p#nav a,
+body.login div#login p#backtoblog a {
+    color: var(--primary-color) !important;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+body.login div#login p#nav a:hover,
+body.login div#login p#backtoblog a:hover {
+    color: var(--accent-light) !important;
+}
+
+/* Message Alerts */
+body.login .message,
+body.login .error {
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+/* Success & Error Messages */
+body.login .message {
+    background: var(--success-bg);
+    border-left: 4px solid var(--success-color);
+    color: var(--secondary-text);
+}
+
+body.login .error {
+    background: var(--error-bg);
+    border-left: 4px solid var(--error-color);
+    color: var(--secondary-text);
+}
+
+/* Register & Lost Password Messages */
+body.login .notice.notice-info.message.register,
+body.login .notice.notice-info.message.lostpassword {
+    background: var(--accent-light);
+    border-left: 4px solid var(--primary-color);
+    padding: 10px;
+    margin-top: 12px;
+    border-radius: 6px;
+    color: var(--secondary-text);
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+/* Register & Lost Password Links */
+body.login .notice.notice-info.message.register a,
+body.login .notice.notice-info.message.lostpassword a {
+    color: var(--primary-color);
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+body.login .notice.notice-info.message.register a:hover,
+body.login .notice.notice-info.message.lostpassword a:hover {
+    color: var(--accent-blue);
+}
