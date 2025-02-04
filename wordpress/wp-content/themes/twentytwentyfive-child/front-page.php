@@ -36,7 +36,7 @@
         <?php if (!is_user_logged_in()) : ?>
             <!-- User Not Logged In -->
             <a href="<?php echo esc_url(wp_registration_url()); ?>" class="btn btn-lg" style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
-                Register to Become An Artist
+                Sign Up to Become An Artist
             </a>
 
         <?php elseif (current_user_can('subscriber')) : ?>

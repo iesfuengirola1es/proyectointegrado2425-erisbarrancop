@@ -90,7 +90,7 @@
                         <li><a href="<?php echo esc_url(wp_logout_url(home_url())); ?>">Logout</a></li>
                     <?php else : ?>
                         <li><a href="<?php echo esc_url(wp_login_url()); ?>">Login</a></li>
-                        <li><a href="<?php echo esc_url(wp_registration_url()); ?>">Register</a></li>
+                        <li><a href="<?php echo esc_url(wp_registration_url()); ?>">Sign Up</a></li>
                     <?php endif; ?>
                 </ul>
             </nav>

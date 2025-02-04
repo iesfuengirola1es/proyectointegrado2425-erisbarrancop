@@ -42,7 +42,7 @@
 
 /* General Login Page Styles */
 body.login {
-    background-color: var(--light-bg);
+    background-image: url("images/login_bg.jpg");
     display: flex;
     align-items: center;
     justify-content: center;
