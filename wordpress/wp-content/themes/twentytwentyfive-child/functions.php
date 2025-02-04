@@ -38,6 +38,13 @@ function music_store_custom_post_types() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'singles'),
         'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
+        'capability_type' => array('single', 'singles'),
+        'capabilities' => array(
+            'edit_post'   => 'edit_single',
+            'edit_posts'  => 'edit_singles',
+            'publish_posts' => 'publish_singles',
+            'delete_post' => 'delete_single',
+        ),
         'menu_icon' => 'dashicons-format-audio', 
     ));
 
@@ -59,66 +66,152 @@ function music_store_custom_post_types() {
         'has_archive' => true,
         'rewrite' => array('slug' => 'albums'),
         'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
+        'capability_type' => array('album', 'albums'),
+        'capabilities' => array(
+            'edit_post'   => 'edit_album',
+            'edit_posts'  => 'edit_albums',
+            'publish_posts' => 'publish_albums',
+            'delete_post' => 'delete_album',
+        ),
         'menu_icon' => 'dashicons-album', 
     ));
 
-    // // Register Vinyls Post Type
-    // register_post_type('vinyl', array(
-    //     'labels' => array(
-    //         'name' => __('Vinyls'),
-    //         'singular_name' => __('Vinyl'),
-    //         'add_new' => __('Add New Vinyl'),
-    //         'add_new_item' => __('Add New Vinyl'),
-    //         'edit_item' => __('Edit Vinyl'),
-    //         'new_item' => __('New Vinyl'),
-    //         'view_item' => __('View Vinyl'),
-    //         'search_items' => __('Search Vinyls'),
-    //         'not_found' => __('No Vinyls found'),
-    //         'not_found_in_trash' => __('No Vinyls found in Trash'),
-    //     ),
-    //     'public' => true,
-    //     'has_archive' => true,
-    //     'rewrite' => array('slug' => 'vinyls'),
-    //     'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
-    //     'menu_icon' => 'dashicons-sos', 
-    // ));
+    // Register Artists Post Type
+    register_post_type('artist', array(
+        'labels' => array(
+            'name' => __('Artists'),
+            'singular_name' => __('Artist'),
+            'add_new' => __('Add New Artist'),
+            'add_new_item' => __('Add New Artist'),
+            'edit_item' => __('Edit Artist'),
+            'new_item' => __('New Artist'),
+            'view_item' => __('View Artist'),
+            'search_items' => __('Search Artists'),
+            'not_found' => __('No Artists found'),
+            'not_found_in_trash' => __('No Artists found in Trash'),
+        ),
+        'public' => true,
+        'has_archive' => true,
+        'rewrite' => array('slug' => 'artists'),
+        'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
+        'capability_type' => array('artist', 'artists'),
+        'capabilities' => array(
+            'edit_post'   => 'edit_artist',
+            'edit_posts'  => 'edit_artists',
+            'publish_posts' => 'publish_artists',
+            'delete_post' => 'delete_artist',
+        ),
+        'menu_icon' => 'dashicons-star-filled', 
+    ));
 }
 
-// Register Artists Post Type
-register_post_type('artist', array(
-    'labels' => array(
-        'name' => __('Artists'),
-        'singular_name' => __('Artist'),
-        'add_new' => __('Add New Artist'),
-        'add_new_item' => __('Add New Artist'),
-        'edit_item' => __('Edit Artist'),
-        'new_item' => __('New Artist'),
-        'view_item' => __('View Artist'),
-        'search_items' => __('Search Artists'),
-        'not_found' => __('No Artists found'),
-        'not_found_in_trash' => __('No Artists found in Trash'),
-    ),
-    'public' => true,
-    'has_archive' => true,
-    'rewrite' => array('slug' => 'artists'),
-    'supports' => array('title', 'editor', 'thumbnail', 'custom-fields'),
-    'menu_icon' => 'dashicons-star-filled', 
-));
+add_action('init', 'music_store_custom_post_types');
 
-// // Add custom user role for Artists
-// function add_artist_role() {
-//     add_role('artist', __('Artist'), array(
-//         'read' => true,
-//         'edit_posts' => true,
-//         'delete_posts' => false,
-//         'publish_posts' => true,
-//         'upload_files' => true,
-//     ));
-// }
-// add_action('init', 'add_artist_role');
+function grant_admin_custom_post_caps() {
+    $admin = get_role('administrator');
+    
+    if ($admin) {
+        // Allow admin to manage Singles
+        $admin->add_cap('edit_single');
+        $admin->add_cap('edit_singles');
+        $admin->add_cap('publish_singles');
+        $admin->add_cap('delete_single');
+
+        // Allow admin to manage Albums
+        $admin->add_cap('edit_album');
+        $admin->add_cap('edit_albums');
+        $admin->add_cap('publish_albums');
+        $admin->add_cap('delete_album');
+
+        // Allow admin to manage Artists
+        $admin->add_cap('edit_artist');
+        $admin->add_cap('edit_artists');
+        $admin->add_cap('publish_artists');
+        $admin->add_cap('delete_artist');
+    }
+}
+add_action('admin_init', 'grant_admin_custom_post_caps');
+
+
+function add_artist_role() {
+    add_role('artist', __('Artist'), array(
+        'read' => true,
+        'edit_posts' => false, // Prevent general post editing
+        'delete_posts' => false,
+        'publish_posts' => false,
+        'upload_files' => true,
+    ));
+
+    $role = get_role('artist');
+
+    if ($role) {
+        // Allow artists to manage their own albums and singles
+        $role->add_cap('edit_album');
+        $role->add_cap('edit_albums');
+        $role->add_cap('publish_albums');
+        $role->add_cap('delete_album');
+        $role->add_cap('edit_single');
+        $role->add_cap('edit_singles');
+        $role->add_cap('publish_singles');
+        $role->add_cap('delete_single');
+
+        // Allow editing only their own artist page
+        $role->add_cap('edit_artist');
+        $role->add_cap('edit_own_artist');
+        $role->add_cap('edit_published_artists');
+        $role->add_cap('delete_artist');
+    }
+}
+add_action('init', 'add_artist_role');
+
+function restrict_artist_access($query) {
+    if (is_admin() && current_user_can('artist')) {
+        global $pagenow;
+
+        if ($pagenow === 'edit.php' && isset($query->query['post_type'])) {
+            $query->set('author', get_current_user_id());
+        }
+    }
+}
+add_action('pre_get_posts', 'restrict_artist_access');
+
+function handle_artist_form_submission() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist_genre']) && isset($_POST['location'])) {
+        $current_user = wp_get_current_user();
+
+        // Check if the user has the subscriber role
+        if (in_array('subscriber', $current_user->roles)) {
+            // Create a new Artist post
+            $artist_post = [
+                'post_title'   => $current_user->display_name,
+                'post_content' => '',
+                'post_status'  => 'publish',
+                'post_author'  => $current_user->ID,
+                'post_type'    => 'artist',
+            ];
+            $post_id = wp_insert_post($artist_post);
+
+            if ($post_id) {
+                // Update ACF fields
+                update_field('artist_genre', sanitize_text_field($_POST['artist_genre']), $post_id);
+                update_field('location', sanitize_text_field($_POST['location']), $post_id);
+                update_field('artist_user', $current_user->ID, $post_id);
+
+                // Change user role to Artist
+                $current_user->remove_role('subscriber');
+                $current_user->add_role('artist');
+
+                // Redirect to avoid form resubmission
+                wp_redirect(home_url());
+                exit;
+            }
+        }
+    }
+}
+add_action('init', 'handle_artist_form_submission');
 
 // Hook into the 'init' action
-add_action('init', 'music_store_custom_post_types');
+
 
 
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
@@ -154,6 +247,3 @@ function custom_login_redirect($redirect_to, $request, $user) {
     return $redirect_to; 
 }
 add_filter('login_redirect', 'custom_login_redirect', 10, 3);
-
-
-
