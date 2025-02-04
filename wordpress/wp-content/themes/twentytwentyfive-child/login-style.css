@@ -194,3 +194,52 @@ body.login .notice.notice-info.message.register a:hover,
 body.login .notice.notice-info.message.lostpassword a:hover {
     color: var(--accent-blue);
 }
+
+/* Incorrect Credentials Error Message */
+body.login div#login_error {
+    background: var(--error-bg) !important; /* Light red background */
+    border-left: 4px solid var(--error-color) !important; /* Darker red border */
+    color: var(--secondary-text) !important;
+    padding: 12px !important;
+    margin-top: 12px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    box-shadow: 0 2px 5px var(--shadow-color) !important;
+}
+
+/* Ensure the "Lost your password?" link inside the error is consistent */
+body.login div#login_error a {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+    transition: color 0.3s ease !important;
+}
+
+body.login div#login_error a:hover {
+    color: var(--accent-blue) !important;
+}
+/* Incorrect Credentials Error Message */
+body.login div#login_error {
+    background: var(--error-bg) !important; /* Light red background */
+    border-left: 4px solid var(--error-color) !important; /* Darker red border */
+    color: var(--secondary-text) !important;
+    padding: 12px !important;
+    margin-top: 12px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    text-align: center !important;
+    box-shadow: 0 2px 5px var(--shadow-color) !important;
+}
+
+/* Ensure the "Lost your password?" link inside the error is consistent */
+body.login div#login_error a {
+    color: var(--primary-color) !important;
+    font-weight: bold !important;
+    text-decoration: underline !important;
+    transition: color 0.3s ease !important;
+}
+
+body.login div#login_error a:hover {
+    color: var(--accent-blue) !important;
+}

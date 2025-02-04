@@ -128,22 +128,32 @@ function special_nav_class($classes, $item){
      }
      return $classes;
 }
-// Change Logo URL (clicking on logo goes to your site)
+
 function my_login_logo_url() {
     return home_url();
 }
 add_filter( 'login_headerurl', 'my_login_logo_url' );
 
-// Change Logo Hover Title
+
 function my_login_logo_url_title() {
     return get_bloginfo('name');
 }
 add_filter( 'login_headertext', 'my_login_logo_url_title' );
 
-// Load Custom Stylesheet for Login Page
+
 function my_login_stylesheet() {
     wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/login-style.css' );
 }
 add_action( 'login_enqueue_scripts', 'my_login_stylesheet' );
+
+function custom_login_redirect($redirect_to, $request, $user) {
+
+    if (isset($user->roles) && is_array($user->roles)) {
+        return home_url('/'); 
+    }
+    return $redirect_to; 
+}
+add_filter('login_redirect', 'custom_login_redirect', 10, 3);
+
 
 
