@@ -176,14 +176,16 @@ function restrict_artist_access($query) {
 add_action('pre_get_posts', 'restrict_artist_access');
 
 function handle_artist_form_submission() {
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist_genre']) && isset($_POST['location'])) {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist_name'], $_POST['artist_genre'], $_POST['location'])) {
         $current_user = wp_get_current_user();
 
-        // Check if the user has the subscriber role
-        if (in_array('subscriber', $current_user->roles)) {
-            // Create a new Artist post
+        // Ensure the user is a subscriber before proceeding
+        if (in_array('subscriber' || 'artist', $current_user->roles)) {
+            $artist_name = sanitize_text_field($_POST['artist_name']);
+
+            // Create the new Artist post
             $artist_post = [
-                'post_title'   => $current_user->display_name,
+                'post_title'   => $artist_name,
                 'post_content' => '',
                 'post_status'  => 'publish',
                 'post_author'  => $current_user->ID,
@@ -197,18 +199,32 @@ function handle_artist_form_submission() {
                 update_field('location', sanitize_text_field($_POST['location']), $post_id);
                 update_field('artist_user', $current_user->ID, $post_id);
 
+                // Handle featured image upload
+                if (!empty($_FILES['artist_image']['name'])) {
+                    require_once ABSPATH . 'wp-admin/includes/image.php';
+                    require_once ABSPATH . 'wp-admin/includes/file.php';
+                    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+                    $attachment_id = media_handle_upload('artist_image', $post_id);
+                    if (!is_wp_error($attachment_id)) {
+                        set_post_thumbnail($post_id, $attachment_id); // Set featured image
+                    }
+                }
+
                 // Change user role to Artist
                 $current_user->remove_role('subscriber');
                 $current_user->add_role('artist');
 
-                // Redirect to avoid form resubmission
-                wp_redirect(home_url());
+                // Redirect to the new artist profile
+                wp_redirect(get_permalink($post_id));
                 exit;
             }
         }
     }
 }
 add_action('init', 'handle_artist_form_submission');
+
+
 
 // Hook into the 'init' action
 

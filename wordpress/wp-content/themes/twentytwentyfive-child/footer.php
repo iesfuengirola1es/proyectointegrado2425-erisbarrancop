@@ -30,27 +30,30 @@
 
 <?php wp_footer(); ?>
 <div id="page-transition"></div>
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Ensure the page-transition overlay stays visible until fully loaded
-    setTimeout(() => {
-        document.body.classList.add("page-loaded");
-    }, 500); // Slight delay to ensure smooth fade-out
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Ensure overlay stays until everything is fully loaded
+        setTimeout(() => {
+            document.body.classList.add("page-loaded");
+        }, 500); // Small delay to ensure smooth transition
 
-    document.querySelectorAll("a").forEach(link => {
-        if (link.host === window.location.host && !link.classList.contains("no-transition")) {
-            link.addEventListener("click", function(event) {
-                event.preventDefault();
-                document.body.classList.add("fade-out");
+        document.querySelectorAll("a").forEach(link => {
+            // Only apply effect to internal links, excluding # anchors and special classes
+            if (link.host === window.location.host && !link.classList.contains("no-transition") && link.getAttribute("href") !== "#") {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault(); // Stop default navigation
+                    document.body.classList.add("fade-out");
 
-                setTimeout(() => {
-                    window.location = this.href;
-                }, 600); // Match transition duration
-            });
-        }
+                    // Delay navigation until fade-out is done
+                    setTimeout(() => {
+                        window.location.href = this.href;
+                    }, 600); // Match the transition duration
+                });
+            }
+        });
     });
-});
-</script>
+
+    </script>
 
 
 
