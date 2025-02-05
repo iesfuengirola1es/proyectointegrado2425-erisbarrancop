@@ -247,3 +247,12 @@ function custom_login_redirect($redirect_to, $request, $user) {
     return $redirect_to; 
 }
 add_filter('login_redirect', 'custom_login_redirect', 10, 3);
+function disable_artist_user_field_for_non_admins($field) {
+    if (!current_user_can('administrator')) {
+        $field['disabled'] = true; // Disable the field
+    }
+    return $field;
+}
+add_filter('acf/load_field/name=artist_user', 'disable_artist_user_field_for_non_admins');
+
+
