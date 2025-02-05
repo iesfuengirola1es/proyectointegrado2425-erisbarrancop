@@ -1,4 +1,5 @@
-<footer class="site-footer" style="border-top:1px solid var(--primary-color);background-color: var(--light-bg); color: var(--input-bg); padding: 20px 0;">
+<footer class="site-footer"
+    style="border-top:1px solid var(--primary-color);background-color: var(--light-bg); color: var(--input-bg); padding: 20px 0;">
     <div class="footer-container container d-flex justify-content-between align-items-center">
         <!-- Footer Navigation -->
         <nav class="footer-navigation" aria-label="Footer Navigation" style="flex-grow: 1;">
@@ -28,6 +29,32 @@
 </footer>
 
 <?php wp_footer(); ?>
-</body>
-</html>
+<div id="page-transition"></div>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Ensure the page-transition overlay stays visible until fully loaded
+    setTimeout(() => {
+        document.body.classList.add("page-loaded");
+    }, 500); // Slight delay to ensure smooth fade-out
 
+    document.querySelectorAll("a").forEach(link => {
+        if (link.host === window.location.host && !link.classList.contains("no-transition")) {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();
+                document.body.classList.add("fade-out");
+
+                setTimeout(() => {
+                    window.location = this.href;
+                }, 600); // Match transition duration
+            });
+        }
+    });
+});
+</script>
+
+
+
+
+</body>
+
+</html>
