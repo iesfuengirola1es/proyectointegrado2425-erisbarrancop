@@ -116,21 +116,28 @@ function grant_admin_custom_post_caps() {
         $admin->add_cap('edit_singles');
         $admin->add_cap('publish_singles');
         $admin->add_cap('delete_single');
+        $admin->add_cap('edit_others_singles');
+        $admin->add_cap('delete_others_singles');
 
         // Allow admin to manage Albums
         $admin->add_cap('edit_album');
         $admin->add_cap('edit_albums');
         $admin->add_cap('publish_albums');
         $admin->add_cap('delete_album');
+        $admin->add_cap('edit_others_albums');
+        $admin->add_cap('delete_others_albums');
 
         // Allow admin to manage Artists
         $admin->add_cap('edit_artist');
         $admin->add_cap('edit_artists');
         $admin->add_cap('publish_artists');
         $admin->add_cap('delete_artist');
+        $admin->add_cap('edit_others_artists');
+        $admin->add_cap('delete_others_artists');
     }
 }
 add_action('admin_init', 'grant_admin_custom_post_caps');
+
 
 
 function add_artist_role() {
@@ -165,17 +172,6 @@ function add_artist_role() {
     }
 }
 add_action('init', 'add_artist_role');
-
-function restrict_artist_access($query) {
-    if (is_admin() && current_user_can('artist')) {
-        global $pagenow;
-
-        if ($pagenow === 'edit.php' && isset($query->query['post_type'])) {
-            $query->set('author', get_current_user_id());
-        }
-    }
-}
-add_action('pre_get_posts', 'restrict_artist_access');
 
 function handle_artist_form_submission() {
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['artist_name'], $_POST['artist_genre'], $_POST['location'])) {
@@ -226,7 +222,64 @@ function handle_artist_form_submission() {
 }
 add_action('init', 'handle_artist_form_submission');
 
+function handle_single_form_submission() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['single_title'], $_POST['single_genre'], $_POST['single_duration'])) {
+        $current_user = wp_get_current_user();
 
+        // Ensure the user has the 'artist' role before proceeding
+        if (in_array('artist', $current_user->roles)) {
+            $single_title = sanitize_text_field($_POST['single_title']);
+            $single_genre = sanitize_text_field($_POST['single_genre']);
+            $single_duration = sanitize_text_field($_POST['single_duration']);
+            $artist_id = intval($_POST['artist_id']);
+
+            // Create the new Single post
+            $single_post = [
+                'post_title'   => $single_title,
+                'post_content' => '',
+                'post_status'  => 'publish',
+                'post_author'  => $current_user->ID,
+                'post_type'    => 'single',
+            ];
+            $post_id = wp_insert_post($single_post);
+
+            if ($post_id) {
+                // Update ACF fields
+                update_field('genre', $single_genre, $post_id);
+                update_field('duration', $single_duration, $post_id);
+                update_field('related_artist', $artist_id, $post_id);
+
+                // Handle featured image upload
+                if (!empty($_FILES['single_image']['name'])) {
+                    require_once ABSPATH . 'wp-admin/includes/image.php';
+                    require_once ABSPATH . 'wp-admin/includes/file.php';
+                    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+                    $attachment_id = media_handle_upload('single_image', $post_id);
+                    if (!is_wp_error($attachment_id)) {
+                        set_post_thumbnail($post_id, $attachment_id);
+                    }
+                }
+
+                // Handle audio file upload
+                if (!empty($_FILES['single_audio']['name'])) {
+                    require_once ABSPATH . 'wp-admin/includes/file.php';
+                    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+                    $audio_id = media_handle_upload('single_audio', $post_id);
+                    if (!is_wp_error($audio_id)) {
+                        update_field('track', $audio_id, $post_id);
+                    }
+                }
+
+                // Redirect to the new single post
+                wp_redirect(get_permalink($post_id));
+                exit;
+            }
+        }
+    }
+}
+add_action('init', 'handle_single_form_submission');
 
 // Hook into the 'init' action
 
@@ -265,12 +318,9 @@ function custom_login_redirect($redirect_to, $request, $user) {
     return $redirect_to; 
 }
 add_filter('login_redirect', 'custom_login_redirect', 10, 3);
-function disable_artist_user_field_for_non_admins($field) {
-    if (!current_user_can('administrator')) {
-        $field['disabled'] = true; // Disable the field
-    }
-    return $field;
-}
-add_filter('acf/load_field/name=artist_user', 'disable_artist_user_field_for_non_admins');
+
+
+
+
 
 

@@ -38,7 +38,7 @@
                     style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
                     Sign Up to Become An Artist
                 </a>
-            <?php elseif (current_user_can('subscriber') || current_user_can('artist')): ?>
+            <?php elseif (current_user_can('subscriber')): ?>
                 <button id="becomeArtistBtn" class="btn btn-lg"
                     style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
                     Become An Artist
@@ -72,7 +72,7 @@
                 </div>
 
                 <div id="overlay"></div>
-            <?php elseif ($artist_post_id): ?>
+            <?php elseif ($artist_post_id || current_user_can('artist')): ?>
                 <a href="<?php echo get_permalink($artist_post_id); ?>" class="btn btn-lg"
                     style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
                     See Profile

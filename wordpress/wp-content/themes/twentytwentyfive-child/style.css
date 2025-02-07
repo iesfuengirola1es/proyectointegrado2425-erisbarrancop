@@ -455,5 +455,44 @@ body.fade-out #page-transition {
     transform: translate(-50%, -50%) scale(1);
 }
 
+#singleFormContainer {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 50%;
+    color: var(--primary-color);
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: var(--light-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+    width: 90%;
+    max-width: 400px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out, visibility 0.4s;
+}
+
+#singleFormContainer.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#singleFormContainer label{
+    padding: 10px;
+}
+
+#closeSingleForm {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--primary-color) !important;
+}
 
 
