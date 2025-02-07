@@ -227,7 +227,7 @@ function handle_single_form_submission() {
         $current_user = wp_get_current_user();
 
         // Ensure the user has the 'artist' role before proceeding
-        if (in_array('artist', $current_user->roles)) {
+        if (array_intersect(['artist', 'administrator'], $current_user->roles)) {
             $single_title = sanitize_text_field($_POST['single_title']);
             $single_genre = sanitize_text_field($_POST['single_genre']);
             $single_duration = sanitize_text_field($_POST['single_duration']);
