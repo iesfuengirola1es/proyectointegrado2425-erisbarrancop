@@ -156,6 +156,8 @@ function add_artist_role() {
         $role->add_cap('delete_single');
 
         // Allow editing only their own artist page
+        $role->add_cap('publish_artist');
+        $role->add_cap('publish_artists');
         $role->add_cap('edit_artist');
         $role->add_cap('edit_own_artist');
         $role->add_cap('edit_published_artists');
