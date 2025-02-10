@@ -2,9 +2,37 @@
 
 <div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-text); font-family: 'Lato', sans-serif;">
     <!-- Hero Section -->
-    <div class="hero-section text-center py-5" style="background: radial-gradient(circle, rgba(220,78,119,1) 0%, rgba(142,50,87,1) 100%); color: var(--light-bg); border-top-left-radius: 10px; border-top-right-radius: 10px;">
-        <h1 class="display-4" style="font-weight: bold;">All Albums</h1>
-    </div>
+        <div class="hero-section text-center py-5 d-flex justify-content-center align-items-center position-relative"
+        style="background: radial-gradient(circle, rgba(220,78,119,1) 0%, rgba(142,50,87,1) 100%); color: var(--light-bg); border-top-left-radius: 10px; border-top-right-radius: 10px;">
+        <h1 class="display-4" style="font-weight: bold; margin: 0;">All Albums</h1>
+
+        <?php
+            $current_user = wp_get_current_user();
+            $artist_post_id = null;
+
+            if (is_user_logged_in()) {
+                $artist_query = new WP_Query([
+                    'post_type' => 'artist',
+                    'meta_key' => 'artist_user',
+                    'meta_value' => $current_user->ID,
+                    'posts_per_page' => 1
+                ]);
+
+                if ($artist_query->have_posts()) {
+                    $artist_query->the_post();
+                    $artist_post_id = get_the_ID();
+                }
+                wp_reset_postdata();
+            }
+            ?>
+        
+            <?php if ($artist_post_id): ?>
+                <button id="createAlbumBtn" class="btn btn-lg"
+                    style="position: absolute; right: 20px; background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
+                    Create Album
+                </button>
+            <?php endif; ?>
+        </div>
 
     <!-- Filter Section -->
     <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding-top: 8px !important;">
@@ -74,6 +102,45 @@
     </div>
 </div>
 
+<!-- Create Album Form (Hidden Initially) -->
+<div id="albumFormContainer" class="overlay-container">
+    <button id="closeAlbumForm" class="close-button">&times;</button>
+    <form id="albumFormSubmit" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="create_album">
+        <input type="hidden" name="artist_id" value="<?php echo $artist_post_id; ?>">
+
+        <div class="form-group">
+            <label for="album_title">Title</label>
+            <input type="text" name="album_title" id="album_title" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="album_genre">Genre</label>
+            <input type="text" name="album_genre" id="album_genre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="album_duration">Duration</label>
+            <input type="text" name="album_duration" id="album_duration" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="album_tracklist">Tracklist</label>
+            <textarea name="album_tracklist" id="album_tracklist" class="form-control"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="album_cover">Cover Image</label>
+            <input type="file" name="album_cover" id="album_cover" class="form-control" accept="image/*">
+        </div>
+        <div class="form-group">
+            <label for="album_audio">Audio Tracks</label>
+            <input type="file" name="album_audio[]" id="album_audio" class="form-control" accept=".mp3, .m4a, .wav" multiple>
+        </div>
+        <button type="submit" class="btn btn-lg" style="background-color: var(--primary-color); color: var(--light-bg); margin-top: 20px; padding: 10px 30px; border-radius: 30px; text-transform: uppercase; font-weight: bold; width: 100%;">
+            Submit
+        </button>
+    </form>
+</div>
+
+<div id="overlay"></div>
+
 <script>
     // Handle sort filter change
     document.getElementById('filter-sort').addEventListener('change', function () {
@@ -120,6 +187,36 @@
             this.style.borderColor = 'var(--primary-hover)';
         });
     });
+
+        document.getElementById('createAlbumBtn')?.addEventListener('click', function () {
+        document.getElementById('overlay').classList.add('active');
+        const form = document.getElementById('albumFormContainer');
+        form.style.display = 'block';
+        setTimeout(() => form.classList.add('active'), 10);
+    });
+
+    document.getElementById('closeAlbumForm')?.addEventListener('click', function () {
+        const form = document.getElementById('albumFormContainer');
+        form.classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+
+        setTimeout(() => {
+            form.style.display = 'none';
+        }, 400);
+    });
+
+    document.getElementById('overlay')?.addEventListener('click', function () {
+        const form = document.getElementById('albumFormContainer');
+        form.classList.remove('active');
+        document.getElementById('overlay').classList.remove('active');
+
+        setTimeout(() => {
+            form.style.display = 'none';
+        }, 400);
+    });
+
+
 </script>
+
 
 <?php get_footer(); ?>

@@ -281,6 +281,88 @@ function handle_single_form_submission() {
 }
 add_action('init', 'handle_single_form_submission');
 
+function handle_album_form_submission() {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['album_title'], $_POST['album_genre'], $_POST['artist_id'])) {
+        $current_user = wp_get_current_user();
+
+        // Ensure only artists and administrators can submit
+        if (array_intersect(['artist', 'administrator'], $current_user->roles)) {
+            $album_title = sanitize_text_field($_POST['album_title']);
+            $album_genre = sanitize_text_field($_POST['album_genre']);
+            $album_duration = sanitize_text_field($_POST['album_duration']);
+            $album_tracklist = sanitize_textarea_field($_POST['album_tracklist']);
+            $artist_id = intval($_POST['artist_id']);
+
+            // Create the new Album post
+            $album_post = [
+                'post_title'   => $album_title,
+                'post_content' => '',
+                'post_status'  => 'publish',
+                'post_author'  => $current_user->ID,
+                'post_type'    => 'album',
+            ];
+            $post_id = wp_insert_post($album_post);
+
+            if ($post_id) {
+                // Update ACF fields
+                update_field('genre', $album_genre, $post_id);
+                update_field('duration', $album_duration, $post_id);
+                update_field('album_tracklist', $album_tracklist, $post_id);
+                update_field('related_artist', $artist_id, $post_id);
+
+                // Handle featured image upload
+                if (!empty($_FILES['album_cover']['name'])) {
+                    require_once ABSPATH . 'wp-admin/includes/image.php';
+                    require_once ABSPATH . 'wp-admin/includes/file.php';
+                    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+                    $attachment_id = media_handle_upload('album_cover', $post_id);
+                    if (!is_wp_error($attachment_id)) {
+                        set_post_thumbnail($post_id, $attachment_id);
+                    }
+                }
+
+                // Handle multiple track uploads
+                if (!empty($_FILES['album_audio']['name'][0])) {
+                    require_once ABSPATH . 'wp-admin/includes/file.php';
+                    require_once ABSPATH . 'wp-admin/includes/media.php';
+
+                    $track_ids = [];
+                    foreach ($_FILES['album_audio']['name'] as $key => $value) {
+                        if (!empty($_FILES['album_audio']['name'][$key])) {
+                            $file = [
+                                'name'     => $_FILES['album_audio']['name'][$key],
+                                'type'     => $_FILES['album_audio']['type'][$key],
+                                'tmp_name' => $_FILES['album_audio']['tmp_name'][$key],
+                                'error'    => $_FILES['album_audio']['error'][$key],
+                                'size'     => $_FILES['album_audio']['size'][$key],
+                            ];
+
+                            $_FILES['single_track'] = $file; // Trick WordPress into processing a single file
+                            $track_id = media_handle_upload('single_track', $post_id);
+
+                            if (!is_wp_error($track_id)) {
+                                $track_ids[] = $track_id;
+                            }
+                        }
+                    }
+
+                    if (!empty($track_ids)) {
+                        update_field('tracks', $track_ids, $post_id);
+                    }
+                }
+
+                // Redirect to the new album post
+                wp_redirect(get_permalink($post_id));
+                exit;
+            }
+        }
+    }
+}
+add_action('init', 'handle_album_form_submission');
+
+
+
 // Hook into the 'init' action
 
 
