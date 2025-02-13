@@ -11,8 +11,9 @@
                 'fallback_cb' => function () {
                     echo '<div class="footer-nav d-flex gap-4">';
                     echo '<a href="' . esc_url(home_url('/')) . '" style="text-decoration: none; color: var(--primary-text);">Home</a>';
-                    echo '<a href="' . esc_url(home_url('/about')) . '" style="text-decoration: none; color: var(--primary-text);">About</a>';
-                    echo '<a href="' . esc_url(home_url('/contact')) . '" style="text-decoration: none; color: var(--primary-text);">Contact</a>';
+                    echo '<a href="' . esc_url(home_url('/artists')) . '" style="text-decoration: none; color: var(--primary-text);">Artists</a>';
+                    echo '<a href="' . esc_url(home_url('/albums')) . '" style="text-decoration: none; color: var(--primary-text);">Albums</a>';
+                    echo '<a href="' . esc_url(home_url('/singles')) . '" style="text-decoration: none; color: var(--primary-text);">Singles</a>';
                     echo '</div>';
                 },
             ));
@@ -54,10 +55,6 @@
     });
 
     </script>
-
-
-
-
 </body>
 
 </html>

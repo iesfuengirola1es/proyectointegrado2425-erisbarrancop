@@ -96,4 +96,5 @@
                 </ul>
             </nav>
         </div>
+        <script src="https://www.paypal.com/sdk/js?client-id=Aae2-vyUvPHAMtnVeXYZLLkQIGcVoziz0FcVMGBQAtReSaHWcAl-kaaSbeLsuy424O3K5zP_DOi0b_r3&currency=EUR"></script>
     </header>

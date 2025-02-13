@@ -401,6 +401,11 @@ function custom_login_redirect($redirect_to, $request, $user) {
 }
 add_filter('login_redirect', 'custom_login_redirect', 10, 3);
 
+function enqueue_paypal_checkout_script() {
+    wp_enqueue_script('paypal-checkout', get_stylesheet_directory_uri() . '/js/paypal-checkout.js', [], null, true);
+}
+add_action('wp_enqueue_scripts', 'enqueue_paypal_checkout_script');
+
 
 
 

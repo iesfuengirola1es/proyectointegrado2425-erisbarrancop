@@ -1,6 +1,8 @@
 <?php get_header(); 
 $genre = get_field('genre');
 $duration = get_field('duration');
+$artist_paypal = get_field('artist_paypal_email');
+$tracks = get_field('track');
 ?>
 
 <div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-hover); font-family: 'Lato', sans-serif;">
@@ -49,7 +51,9 @@ $duration = get_field('duration');
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
                         <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
-                           <?php 
+                        
+                        <?php 
+                        
                         if ($genre || $duration) {
                             echo '<div class="row mb-4">'; // Added mb-4 to the row
                             if ($genre) {
@@ -67,8 +71,28 @@ $duration = get_field('duration');
                             }
                             echo '</div>'; 
                         }
-
+                        
                         the_content(); ?>
+                        <!-- Pay What You Like Section -->
+                            <h4 class="mb-3" style="font-weight: bold; text-align: center;">Donate to <?php echo get_the_title($artist->ID); ?></h4>
+                            <div id="pay-what-you-like" class="pay-what-you-like-section mb-4">
+                                <div class="amount-container">
+                                    <div class="preset-amounts">
+                                        <button class="preset-amount" data-amount="1">1€</button>
+                                        <button class="preset-amount" data-amount="2">2€</button>
+                                        <button class="preset-amount" data-amount="5">5€</button>
+                                        <button class="preset-amount" data-amount="10">10€</button>
+                                    </div>
+                                    <div class="custom-amount">
+                                        <input type="number" id="custom-amount-input" class="form-control" placeholder="Enter amount" min="1" step="0.01" />
+                                    </div>
+                                </div>
+                                <div id="paypal-button-container"></div>
+                            </div>
+
+                            <!-- Hidden fields for amount and PayPal email -->
+                            <input type="hidden" id="amount" value="1"> <!-- Default amount is €1 -->
+                            <input type="hidden" id="artist-email" value="<?php echo esc_attr($artist_paypal); ?>">
                         </div>
                     </div>
                 </div>
