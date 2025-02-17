@@ -85,23 +85,23 @@ if ($tracks) {
                         }
                         
                         the_content(); ?>
+                        <?php if (!empty($track_url)) : ?>
                         <!-- Pay What You Like Section -->
-                            <h4 class="mb-3" style="font-weight: bold; text-align: center;">Donate to <?php echo get_the_title($artist->ID); ?></h4>
-                            <div id="pay-what-you-like" class="pay-what-you-like-section mb-4">
-                                <div class="amount-container">
-                                    <div class="preset-amounts">
-                                        <button class="preset-amount" data-amount="1">1€</button>
-                                        <button class="preset-amount" data-amount="2">2€</button>
-                                        <button class="preset-amount" data-amount="5">5€</button>
-                                        <button class="preset-amount" data-amount="10">10€</button>
-                                    </div>
-                                    <div class="custom-amount">
-                                        <input type="number" id="custom-amount-input" class="form-control" placeholder="Enter amount" min="1" step="0.01" />
-                                    </div>
+                        <h4 class="mb-3" style="font-weight: bold; text-align: center;">Donate to <?php echo get_the_title($artist->ID); ?></h4>
+                        <div id="pay-what-you-like" class="pay-what-you-like-section mb-4">
+                            <div class="amount-container">
+                                <div class="preset-amounts">
+                                    <button class="preset-amount" data-amount="1">1€</button>
+                                    <button class="preset-amount" data-amount="2">2€</button>
+                                    <button class="preset-amount" data-amount="5">5€</button>
+                                    <button class="preset-amount" data-amount="10">10€</button>
                                 </div>
-                                <div id="paypal-button-container"></div>
+                                <div class="custom-amount">
+                                    <input type="number" id="custom-amount-input" class="form-control" placeholder="Enter amount" min="1" step="0.01" />
+                                </div>
                             </div>
-
+                            <div id="paypal-button-container"></div>
+                        </div>
                         <!-- Download Track Without Donation (Separate from PayPal) -->
                         <div class="text-center mt-3">
                             <p>Don't want to donate?  
@@ -110,6 +110,7 @@ if ($tracks) {
                             </a>
                             </p>
                         </div>
+                        <?php endif; ?>
                     </div>
 
                             <!-- Hidden fields for amount and PayPal email -->
