@@ -165,6 +165,7 @@ input:focus, textarea:focus {
     color: var(--input-bg);
     text-align: center;
     position: fixed;
+    display: block;
     bottom: 0;
     left: 0;
     right: 0;    
@@ -624,4 +625,5 @@ body.fade-out #page-transition {
     margin-top: 20px;
     display: flex;
     justify-content: center; /* Center the PayPal button */
+    width: 70%;
 }

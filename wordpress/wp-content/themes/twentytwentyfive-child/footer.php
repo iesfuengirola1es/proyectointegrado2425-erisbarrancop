@@ -52,6 +52,24 @@
                 });
             }
         });
+        var downloadLink = document.getElementById("download-track-link");
+        var trackFile = document.getElementById("track-file").value;
+
+        downloadLink.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            if (!trackFile) {
+                alert("No track available for download.");
+                return;
+            }
+
+            var a = document.createElement("a");
+            a.href = trackFile;
+            a.download = trackFile.split("/").pop(); // Extract filename from URL
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        });
     });
 
     </script>

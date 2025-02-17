@@ -3,6 +3,18 @@ $genre = get_field('genre');
 $duration = get_field('duration');
 $artist_paypal = get_field('artist_paypal_email');
 $tracks = get_field('track');
+
+$track_url = '';
+if ($tracks) {
+    // If it's a file field (ACF returns an array)
+    if (is_array($tracks) && isset($tracks['url'])) {
+        $track_url = $tracks['url'];
+    } else {
+        // If it's a direct URL string
+        $track_url = $tracks;
+    }
+}
+
 ?>
 
 <div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-hover); font-family: 'Lato', sans-serif;">
@@ -90,9 +102,20 @@ $tracks = get_field('track');
                                 <div id="paypal-button-container"></div>
                             </div>
 
+                        <!-- Download Track Without Donation (Separate from PayPal) -->
+                        <div class="text-center mt-3">
+                            <p>Don't want to donate?  
+                            <a id="download-track-link" href="#" style="color: var(--primary-hover); font-weight: bold; text-decoration: none;">
+                                Download track instead!
+                            </a>
+                            </p>
+                        </div>
+                    </div>
+
                             <!-- Hidden fields for amount and PayPal email -->
                             <input type="hidden" id="amount" value="1"> <!-- Default amount is €1 -->
                             <input type="hidden" id="artist-email" value="<?php echo esc_attr($artist_paypal); ?>">
+                            <input type="hidden" id="track-file" value="<?php echo esc_url($track_url); ?>">
                         </div>
                     </div>
                 </div>
