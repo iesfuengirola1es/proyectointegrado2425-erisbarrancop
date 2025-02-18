@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     var amountField = document.getElementById("amount");
     var artistEmail = document.getElementById("artist-email").value;
-    
+    var trackFile = document.getElementById("track-file").value; // Get the track URL
+
     // Update the amount when a preset button is clicked
     var presetButtons = document.querySelectorAll(".preset-amount");
     presetButtons.forEach(function (button) {
@@ -19,8 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
             amountField.value = customAmount;  // Update the hidden field with custom amount
         }
     });
-
-    
 
     // PayPal button setup
     paypal.Buttons({
@@ -41,6 +40,16 @@ document.addEventListener("DOMContentLoaded", function () {
             return actions.order.capture().then(function (details) {
                 alert("Payment successful! Transaction ID: " + details.id);
                 // Handle success (e.g., store payment details in WordPress)
+
+                // Trigger the download of the track
+                if (trackFile) {
+                    var a = document.createElement("a");
+                    a.href = trackFile;
+                    a.download = trackFile.split("/").pop(); // Set the filename for the download
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
             });
         },
         onError: function (err) {
