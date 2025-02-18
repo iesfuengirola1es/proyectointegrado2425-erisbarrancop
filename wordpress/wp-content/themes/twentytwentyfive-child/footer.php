@@ -73,6 +73,53 @@
     });
 
     </script>
+
+        <!-- Floating Music Player -->
+    <div id="floating-music-player" style="display: none;">
+        <div class="player-controls">
+            <span id="track-title"><?php echo esc_html(get_the_title()); ?></span>
+            <button id="play-pause-btn">Play</button>
+            <button id="prev-btn">Previous</button>
+            <button id="next-btn">Next</button>
+            <input type="range" id="volume-slider" min="0" max="1" step="0.1" value="1">
+        </div>
+        <audio id="audio-player"></audio>
+    </div>
+
+
+    <style>
+        #floating-music-player {
+            position: fixed;
+            top: 80px; /* Default position */
+            left: 20px;
+            width: 300px; /* Fixed width */
+            height: auto;
+            background-color: var(--mid-bg);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            cursor: grab;
+            user-select: none;
+        }
+
+        .player-controls {
+            display: flex;
+            flex-wrap: nowrap; /* Prevents stretching */
+            align-items: center;
+            gap: 10px;
+        }
+
+        #track-title {
+            margin: 0 10px;
+            font-weight: bold;
+            white-space: nowrap; /* Prevents title from forcing resizing */
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+    </style>
+
 </body>
 
 </html>

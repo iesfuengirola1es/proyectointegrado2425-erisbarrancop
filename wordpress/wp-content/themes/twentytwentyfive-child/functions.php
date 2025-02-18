@@ -406,6 +406,15 @@ function enqueue_paypal_checkout_script() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_paypal_checkout_script');
 
+function enqueue_floating_player_script() {
+    wp_enqueue_script('floating-player', get_stylesheet_directory_uri() . '/js/floating-player.js', array(), null, true);
+    wp_localize_script('floating-player', 'playerData', array(
+        'currentTrack' => get_field('track') ? get_field('track')['url'] : '',
+        'currentTitle' => get_the_title(),
+    ));
+}
+add_action('wp_enqueue_scripts', 'enqueue_floating_player_script');
+
 
 
 

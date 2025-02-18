@@ -129,4 +129,22 @@ if ($tracks) {
     </div>
 </div>
 
+<?php
+$track_url = '';
+if ($tracks) {
+    if (is_array($tracks) && isset($tracks['url'])) {
+        $track_url = $tracks['url'];
+    } else {
+        $track_url = $tracks;
+    }
+}
+?>
+
+<script type="text/javascript">
+    var playerData = {
+        currentTrack: "<?php echo esc_url($track_url); ?>",
+        currentTitle: "<?php echo esc_js(get_the_title()); ?>"
+    };
+</script>
+
 <?php get_footer(); ?>
