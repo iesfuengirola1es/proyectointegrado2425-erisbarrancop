@@ -100,9 +100,9 @@ if ($tracks) {
                                         <button class="preset-amount" data-amount="5">5€</button>
                                         <button class="preset-amount" data-amount="10">10€</button>
                                     </div>
-                                    <div class="custom-amount">
-                                        <input type="number" id="custom-amount-input" class="form-control" placeholder="Enter amount" min="1" step="0.01" />
-                                    </div>
+                                </div>
+                                <div class="custom-amount">
+                                    <input type="number" id="custom-amount-input" class="form-control" placeholder="Enter amount" min="1" step="0.01" />
                                 </div>
                                 <div id="paypal-button-container"></div>
                             </div>
