@@ -406,14 +406,34 @@ function enqueue_paypal_checkout_script() {
 }
 add_action('wp_enqueue_scripts', 'enqueue_paypal_checkout_script');
 
-function enqueue_floating_player_script() {
-    wp_enqueue_script('floating-player', get_stylesheet_directory_uri() . '/js/floating-player.js', array(), null, true);
-    wp_localize_script('floating-player', 'playerData', array(
-        'currentTrack' => get_field('track') ? get_field('track')['url'] : '',
-        'currentTitle' => get_the_title(),
+function my_theme_enqueue_scripts() {
+    // Enqueue on EVERY page
+    wp_enqueue_script( 'floating-player', get_stylesheet_directory_uri() . '/js/floating-player.js', array('jquery'), '1.0', true );
+
+    // Get track data for the CURRENT page (if any)
+    global $post;
+    $track_url = '';
+    $track_title = '';
+
+    if ( is_singular( 'single' ) && $post ) { // Check if it's a single post AND we have a $post object
+        $tracks = get_field('track', $post->ID);
+
+        if ($tracks) {
+            if (is_array($tracks) && isset($tracks['url'])) {
+                $track_url = $tracks['url'];
+            } else {
+                $track_url = $tracks;
+            }
+            $track_title = get_the_title($post->ID);
+        }
+    }
+
+    wp_localize_script( 'floating-player', 'playerData', array(
+        'currentTrack' => esc_url($track_url),  // Pass even if empty
+        'currentTitle' => esc_js($track_title)    // Pass even if empty
     ));
 }
-add_action('wp_enqueue_scripts', 'enqueue_floating_player_script');
+add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
 
 
 

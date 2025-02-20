@@ -392,6 +392,7 @@ p {
     opacity: 1; /* Initially visible */
     transition: opacity 0.4s ease-in-out;
     z-index: 9999;
+    background-color: #fff;
 }
 
 /* Fade out transition when page is fully loaded */
@@ -626,4 +627,136 @@ body.fade-out #page-transition {
     display: flex;
     justify-content: center; /* Center the PayPal button */
     width: 70%;
+}
+
+#floating-music-player {
+    position: fixed;
+    top: 80px;
+    left: 20px;
+    width: 330px;
+    /* Increase Width */
+    height: auto;
+    background-color: var(--light-bg);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    cursor: grab;
+    user-select: none;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: visible;
+}
+
+.player-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#track-title {
+    font-weight: bold;
+    color: var(--primary-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+}
+
+#progress-container {
+    width: 60%;
+    height: 8px;
+    background-color: #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 0 5px;
+    /* Horizontal Padding */
+}
+
+#play-pause-btn,
+#prev-btn,
+#next-btn {
+    background-color: var(--primary-color);
+    color: var(--input-bg) !important;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-shrink: 0;
+    width: 35px;
+    /* Set a width to keep them square */
+    height: 35px;
+    /* Set a height to keep them square */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Hide Text */
+    font-size: 0px;
+}
+
+#play-pause-btn:hover,
+#prev-btn:hover,
+#next-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+#volume-slider {
+    width: 80px;
+    appearance: none;
+    height: 8px;
+    background: var(--mid-bg);
+    border-radius: 5px;
+    outline: none;
+    flex-shrink: 0;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+#play-pause-btn svg,
+#prev-btn svg,
+#next-btn svg {
+    width: 16px; /* Adjust as needed */
+    height: 16px; /* Adjust as needed */
+    fill: var(--input-bg); /* Icon color */
+}
+#pin-player-btn {
+    position: absolute;
+    top: -25px !important;       /* Adjust to position the icon as needed - increased to pull higher */
+    right: -25px !important;     /* Adjust to position the icon as needed - reduced to pull further right */
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;  /* Ensure the icon is above the player */
+    transform: rotate(35deg); /* Add this line to tilt the icon */
+}
+
+#pin-player-btn svg {
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+    color: var(--primary-color) !important;
 }

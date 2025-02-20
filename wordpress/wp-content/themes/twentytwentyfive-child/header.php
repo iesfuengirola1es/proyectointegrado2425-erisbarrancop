@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <div id="page-transition"></div>
     <?php wp_body_open(); ?>
 
     <header class="site-header" style="background-color: var(--light-bg); color: var(--input-bg);">
@@ -97,4 +98,40 @@
             </nav>
         </div>
         <script src="https://www.paypal.com/sdk/js?client-id=Aae2-vyUvPHAMtnVeXYZLLkQIGcVoziz0FcVMGBQAtReSaHWcAl-kaaSbeLsuy424O3K5zP_DOi0b_r3&currency=EUR"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Preload the image
+                const img = new Image();
+                img.onload = function() {
+                    // Once the image is loaded, show the page and start the fade-out
+                    document.body.classList.add("page-loaded");
+                };
+                img.src = "<?php echo get_stylesheet_directory_uri(); ?>/images/login_bg.jpg"; // Replace with your image path
+
+                // Fallback in case the image fails to load
+                setTimeout(() => {
+                    if (!document.body.classList.contains("page-loaded")) {
+                        document.body.classList.add("page-loaded");
+                    }
+                }, 2000); // Max 2 seconds to load, then proceed anyway
+
+                // Link click handling (move this to the header too)
+                document.querySelectorAll("a").forEach(link => {
+                    // Only apply effect to internal links, excluding # anchors and special classes
+                    if (link.host === window.location.host && !link.classList.contains("no-transition") && link.getAttribute("href") !== "#") {
+                        link.addEventListener("click", function(event) {
+                            event.preventDefault(); // Stop default navigation
+                            const targetUrl = this.href; // Store the URL *before* the fade-out
+
+                            document.body.classList.add("fade-out");
+
+                            // Delay navigation until fade-out is done
+                            setTimeout(() => {
+                                window.location.href = targetUrl;
+                            }, 400); // Match the transition duration (0.4s)
+                        });
+                    }
+                });
+            });
+        </script>
     </header>

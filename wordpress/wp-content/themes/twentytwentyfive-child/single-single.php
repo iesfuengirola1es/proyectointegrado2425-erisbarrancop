@@ -60,9 +60,9 @@ if ($tracks) {
     <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
         <div class="container">
             <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-                <div class="row">
+                <div class="row justify-content-<?php echo !empty($artist_paypal) ? 'between' : 'center'; ?>">
                     <!-- Main Content Column -->
-                    <div class="col-md-8">
+                    <div class="<?php echo !empty($artist_paypal) ? 'col-md-8' : 'col-md-10'; ?>">
                         <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
                             <?php 
                             if ($genre || $duration) {
@@ -89,6 +89,7 @@ if ($tracks) {
                     </div>
 
                     <!-- PayPal Column -->
+                    <?php if (!empty($artist_paypal)) : ?>
                     <div class="col-md-4">
                         <div class="paypal-content" style="background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
                             <h4 class="mb-3" style="font-weight: bold; text-align: center;">Donate to <?php echo get_the_title($artist->ID); ?></h4>
@@ -118,33 +119,19 @@ if ($tracks) {
                             <?php endif; ?>
                         </div>
                     </div>
+                    <?php endif; ?>
                 </div>
 
                 <!-- Hidden fields for amount and PayPal email -->
+                <?php if (!empty($artist_paypal)) : ?>
                 <input type="hidden" id="amount" value="1"> <!-- Default amount is €1 -->
                 <input type="hidden" id="artist-email" value="<?php echo esc_attr($artist_paypal); ?>">
+                <?php endif; ?>
                 <input type="hidden" id="track-file" value="<?php echo esc_url($track_url); ?>">
             <?php endwhile; endif; ?>
         </div>
     </div>
 </div>
 
-<?php
-$track_url = '';
-if ($tracks) {
-    if (is_array($tracks) && isset($tracks['url'])) {
-        $track_url = $tracks['url'];
-    } else {
-        $track_url = $tracks;
-    }
-}
-?>
-
-<script type="text/javascript">
-    var playerData = {
-        currentTrack: "<?php echo esc_url($track_url); ?>",
-        currentTitle: "<?php echo esc_js(get_the_title()); ?>"
-    };
-</script>
 
 <?php get_footer(); ?>
