@@ -747,7 +747,7 @@ body.fade-out #page-transition {
 #pin-player-btn {
     position: absolute;
     top: -25px !important;       /* Adjust to position the icon as needed - increased to pull higher */
-    right: -25px !important;     /* Adjust to position the icon as needed - reduced to pull further right */
+    right: -27px !important;     /* Adjust to position the icon as needed - reduced to pull further right */
     background: none;
     border: none;
     cursor: pointer;
@@ -755,8 +755,4 @@ body.fade-out #page-transition {
     transform: rotate(35deg); /* Add this line to tilt the icon */
 }
 
-#pin-player-btn svg {
-    width: 20px; /* Adjust as needed */
-    height: 20px; /* Adjust as needed */
-    color: var(--primary-color) !important;
-}
+
