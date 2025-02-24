@@ -753,6 +753,15 @@ body.fade-out #page-transition {
     cursor: pointer;
     z-index: 10000;  /* Ensure the icon is above the player */
     transform: rotate(35deg); /* Add this line to tilt the icon */
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+
+.pin-icon {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+#pin-player-btn:hover {
+    transform: scale(1.1); /* Optional: Add a slight scale effect on hover */
+}
 
