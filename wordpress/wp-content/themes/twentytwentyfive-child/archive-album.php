@@ -133,6 +133,10 @@
             <label for="album_audio">Audio Tracks</label>
             <input type="file" name="album_audio[]" id="album_audio" class="form-control" accept=".mp3, .m4a, .wav" multiple>
         </div>
+        <div class="form-group">
+            <label for="artist_paypal_email">Artist Paypal Email</label>
+            <input type="text" name="artist_paypal_email" id="artist_paypal_email" class="form-control">
+        </div>
         <button type="submit" class="btn btn-lg" style="background-color: var(--primary-color); color: var(--light-bg); margin-top: 20px; padding: 10px 30px; border-radius: 30px; text-transform: uppercase; font-weight: bold; width: 100%;">
             Submit
         </button>

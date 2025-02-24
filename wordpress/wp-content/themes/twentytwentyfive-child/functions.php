@@ -231,6 +231,7 @@ function handle_single_form_submission() {
             $single_title = sanitize_text_field($_POST['single_title']);
             $single_genre = sanitize_text_field($_POST['single_genre']);
             $single_duration = sanitize_text_field($_POST['single_duration']);
+            $artist_paypal_email = sanitize_email($_POST['artist_paypal_email']);
             $artist_id = intval($_POST['artist_id']);
 
             // Create the new Single post
@@ -248,6 +249,7 @@ function handle_single_form_submission() {
                 update_field('genre', $single_genre, $post_id);
                 update_field('duration', $single_duration, $post_id);
                 update_field('related_artist', $artist_id, $post_id);
+                update_field('artist_paypal_email', $artist_id, $post_id);
 
                 // Handle featured image upload
                 if (!empty($_FILES['single_image']['name'])) {
@@ -291,6 +293,7 @@ function handle_album_form_submission() {
             $album_genre = sanitize_text_field($_POST['album_genre']);
             $album_duration = sanitize_text_field($_POST['album_duration']);
             $album_tracklist = sanitize_textarea_field($_POST['album_tracklist']);
+            $artist_paypal_email = sanitize_email($_POST['artist_paypal_email']);
             $artist_id = intval($_POST['artist_id']);
 
             // Create the new Album post
@@ -308,6 +311,7 @@ function handle_album_form_submission() {
                 update_field('genre', $album_genre, $post_id);
                 update_field('duration', $album_duration, $post_id);
                 update_field('album_tracklist', $album_tracklist, $post_id);
+                update_field('artist_paypal_email', $artist_paypal_email, $post_id);
                 update_field('related_artist', $artist_id, $post_id);
 
                 // Handle featured image upload

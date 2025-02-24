@@ -2,6 +2,19 @@
 $genre = get_field('genre');
 $duration = get_field('duration');
 $tracklist = get_field('album_tracklist');
+$artist_paypal = get_field('artist_paypal_email');
+$tracks = get_field('track');
+
+$track_url = '';
+if ($tracks) {
+    // If it's a file field (ACF returns an array)
+    if (is_array($tracks) && isset($tracks['url'])) {
+        $track_url = $tracks['url'];
+    } else {
+        // If it's a direct URL string
+        $track_url = $tracks;
+    }
+}
 ?>
 
 <div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-hover); font-family: 'Lato', sans-serif;">
@@ -40,49 +53,88 @@ $tracklist = get_field('album_tracklist');
         </div>
     </div>
 
-
     <!-- Content Section -->
-<div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
-    <div class="container">
-        <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
-                        
-                        <?php 
-                        if ($genre || $duration) {
-                            echo '<div class="row">'; 
-                            if ($genre) {
-                                echo '<div class="col-md-6 mt-4">'; 
-                                echo '<h4 class="mb-3" style="font-weight: bold;">Genre:</h4>';
-                                echo '<div id="genre-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($genre) . '</div>';
-                                 echo '</div>';
+    <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+        <div class="container">
+            <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+                <div class="row justify-content-<?php echo !empty($artist_paypal) ? 'between' : 'center'; ?>">
+                    <!-- Main Content Column -->
+                    <div class="<?php echo !empty($artist_paypal) ? 'col-md-8' : 'col-md-10'; ?>">
+                        <div class="post-content" style="line-height: 1.8; background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
+                            <?php 
+                            if ($genre || $duration) {
+                                echo '<div class="row mb-4">'; // Added mb-4 to the row
+                                if ($genre) {
+                                    echo '<div class="col-md-6 mt-4">'; 
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">Genre:</h4>';
+                                    echo '<div id="genre-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($genre) . '</div>';
+                                    echo '</div>';
+                                }
+                                
+                                if ($duration) {
+                                    echo '<div class="col-md-6 mt-4">'; 
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">Duration:</h4>';
+                                    echo '<div id="duration-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($duration) . '</div>';
+                                    echo '</div>';
+                                }
+                                echo '</div>'; 
                             }
                             
-                            if ($duration) {
-                                echo '<div class="col-md-6 mt-4">'; 
-                                echo '<h4 class="mb-3" style="font-weight: bold;">Duration:</h4>';
-                                echo '<div id="duration-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($duration) . '</div>';
-                                  echo '</div>';
+                            if ($tracklist) {
+                                echo '<div class="tracklist mt-4">';
+                                echo '<h4 class="mb-3" style="font-weight: bold;">Tracklist:</h4>';
+                                echo '<pre id="tracklist-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($tracklist) . '</pre>';
+                                echo '</div>';
                             }
-                            echo '</div>'; 
-                        }
-                        if ($tracklist) {
-                            echo '<div class="tracklist mt-4">';
-                            echo '<h4 class="mb-3" style="font-weight: bold;">Tracklist:</h4>';
-                            echo '<pre id="tracklist-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($tracklist) . '</pre>';
-                            echo '</div>';
-                        }
 
-                        the_content(); ?>
-
+                            the_content(); 
+                            ?>
+                        </div>
                     </div>
-                </div>
-            </div>
-        <?php endwhile; endif; ?>
-    </div>
-</div>
 
+                    <!-- PayPal Column -->
+                    <?php if (!empty($artist_paypal)) : ?>
+                    <div class="col-md-4">
+                        <div class="paypal-content" style="background-color: var(--light-bg); padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px var(--accent-light);">
+                            <h4 class="mb-3" style="font-weight: bold; text-align: center;">Donate to <?php echo get_the_title($artist->ID); ?></h4>
+                            <div id="pay-what-you-like" class="pay-what-you-like-section mb-4">
+                                <div class="amount-container">
+                                    <div class="preset-amounts">
+                                        <button class="preset-amount" data-amount="1">1€</button>
+                                        <button class="preset-amount" data-amount="2">2€</button>
+                                        <button class="preset-amount" data-amount="5">5€</button>
+                                        <button class="preset-amount" data-amount="10">10€</button>
+                                    </div>
+                                </div>
+                                <div class="custom-amount">
+                                    <input type="number" id="custom-amount-input" class="form-control" placeholder="Enter amount" min="1" step="0.01" />
+                                </div>
+                                <div id="paypal-button-container"></div>
+                            </div>
+                            <?php if (!empty($track_url)) : ?>
+                            <!-- Download Track Without Donation (Separate from PayPal) -->
+                            <div class="text-center mt-3">
+                                <p>Don't want to donate?  
+                                <a id="download-track-link" href="#" style="color: var(--primary-hover); font-weight: bold; text-decoration: none;">
+                                    Download track instead!
+                                </a>
+                                </p>
+                            </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+                </div>
+
+                <!-- Hidden fields for amount and PayPal email -->
+                <?php if (!empty($artist_paypal)) : ?>
+                <input type="hidden" id="amount" value="1"> <!-- Default amount is €1 -->
+                <input type="hidden" id="artist-email" value="<?php echo esc_attr($artist_paypal); ?>">
+                <?php endif; ?>
+                <input type="hidden" id="track-file" value="<?php echo esc_url($track_url); ?>">
+            <?php endwhile; endif; ?>
+        </div>
+    </div>
 </div>
 
 <?php get_footer(); ?>
