@@ -746,8 +746,8 @@ body.fade-out #page-transition {
 }
 #pin-player-btn {
     position: absolute;
-    top: -25px !important;       /* Adjust to position the icon as needed - increased to pull higher */
-    right: -27px !important;     /* Adjust to position the icon as needed - reduced to pull further right */
+    top: -22px !important;       /* Adjust to position the icon as needed - increased to pull higher */
+    right: -28px !important;     /* Adjust to position the icon as needed - reduced to pull further right */
     background: none;
     border: none;
     cursor: pointer;
@@ -761,7 +761,10 @@ body.fade-out #page-transition {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+
 #pin-player-btn:hover {
     transform: scale(1.1); /* Optional: Add a slight scale effect on hover */
+    transform: rotate(20deg); /* Add this line to tilt the icon */
+
 }
 
