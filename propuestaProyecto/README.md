@@ -1,8 +1,8 @@
 # 🎵 INTRODUCCIÓN
 
-En los últimos años, el consumo de **música digital** ha crecido de forma notable. Al mismo tiempo, los formatos físicos, como los **vinilos**, han recuperado su popularidad entre coleccionistas y entusiastas. Sin embargo, no todas las plataformas de música ofrecen una experiencia interactiva y personalizable que satisfaga tanto a usuarios casuales como a coleccionistas.  
+En los últimos años, el consumo de **música digital** ha crecido de forma notable. Al mismo tiempo, los artistas independientes cada vez lo tienen mas dificil para dar a conocer sus proyectos y recibir algun tipo de beneficio. Con Together estos artistas pueden tener una comunidad junto a otros artistas y entusiastas de la musica, en la cual podran donar, escuchar y conocerlo.
 
-🎯 **Este proyecto** tiene como objetivo desarrollar una tienda en línea que combine la venta de música digital y física (álbumes, vinilos y sencillos) con un diseño moderno, dinámico e innovador.  
+🎯 **Este proyecto** tiene como objetivo desarrollar una comunidad musical en la que artistas puedan compartir sus proyectos musicales y recibir donaciones por ellos.
 
 ### Características destacadas:  
 - **Búsqueda en tiempo real.**  
