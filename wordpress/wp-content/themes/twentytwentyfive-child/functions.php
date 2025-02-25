@@ -411,16 +411,18 @@ function enqueue_paypal_checkout_script() {
 add_action('wp_enqueue_scripts', 'enqueue_paypal_checkout_script');
 
 function my_theme_enqueue_scripts() {
-    // Enqueue on EVERY page
+    // Enqueue the floating player script on every page
     wp_enqueue_script( 'floating-player', get_stylesheet_directory_uri() . '/js/floating-player.js', array('jquery'), '1.0', true );
 
     // Get track data for the CURRENT page (if any)
     global $post;
     $track_url = '';
     $track_title = '';
+    $track_image = ''; // New: Track image variable
 
     if ( is_singular( 'single' ) && $post ) { // Check if it's a single post AND we have a $post object
         $tracks = get_field('track', $post->ID);
+        $track_image = get_the_post_thumbnail_url($post->ID); // Fetch the track image URL
 
         if ($tracks) {
             if (is_array($tracks) && isset($tracks['url'])) {
@@ -430,14 +432,22 @@ function my_theme_enqueue_scripts() {
             }
             $track_title = get_the_title($post->ID);
         }
+
+        // Ensure track image is valid, else provide a fallback
+        if (!$track_image) {
+            $track_image = get_stylesheet_directory_uri() . '/images/default-track.jpg'; // Fallback image
+        }
     }
 
+    // Pass data to JavaScript
     wp_localize_script( 'floating-player', 'playerData', array(
-        'currentTrack' => esc_url($track_url),  // Pass even if empty
-        'currentTitle' => esc_js($track_title)    // Pass even if empty
+        'currentTrack' => esc_url($track_url),
+        'currentTitle' => esc_js($track_title),
+        'currentImageUrl' => esc_url($track_image) 
     ));
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_scripts' );
+
 
 
 

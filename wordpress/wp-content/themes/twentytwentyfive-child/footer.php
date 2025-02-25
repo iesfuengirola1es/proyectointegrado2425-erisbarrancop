@@ -66,12 +66,12 @@
         </button>
 
         <div class="player-top-row">
+            <img id="track-image" src="" alt="Track Image">
             <span id="track-title"></span>
-            <div id="progress-container">
-                <div id="progress-bar"></div>
-            </div>
         </div>
-
+        <div id="progress-container">
+                <div id="progress-bar"></div>
+        </div>
         <div class="player-controls">
             <button id="prev-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
