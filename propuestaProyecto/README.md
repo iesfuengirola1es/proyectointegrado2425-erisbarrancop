@@ -2,7 +2,7 @@
 
 En los últimos años, el consumo de **música digital** ha crecido de forma notable. Al mismo tiempo, los artistas independientes cada vez lo tienen mas dificil para dar a conocer sus proyectos y recibir algun tipo de beneficio. Con Together estos artistas pueden tener una comunidad junto a otros artistas y entusiastas de la musica, en la cual podran donar, escuchar y conocerlo.
 
-🎯 **Este proyecto** tiene como objetivo desarrollar una comunidad musical en la que artistas puedan compartir sus proyectos musicales y recibir donaciones por ellos.
+🎯 **Este proyecto** tiene como objetivo desarrollar una comunidad musical en la que artistas puedan compartir sus proyectos musicales y recibir donaciones por ellosg.
 
 ### Características destacadas:  
 - **Búsqueda en tiempo real.**  
