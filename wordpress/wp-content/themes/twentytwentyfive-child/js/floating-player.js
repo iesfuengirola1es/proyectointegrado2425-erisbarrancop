@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const progressContainer = document.getElementById('progress-container');
     const pinPlayerBtn = document.getElementById('pin-player-btn');
     const trackImage = document.getElementById('track-image'); 
+    const trackArtist = document.getElementById('track-artist'); 
 
     let isDragging = false,
         offsetX = 0,
@@ -47,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-    function loadAndPlayTrack(trackUrl, trackTitleText, trackImageUrl) {
+    function loadAndPlayTrack(trackUrl, trackTitleText, trackArtistText, trackImageUrl) {
         if (!trackUrl) {
             floatingPlayer.style.display = 'none';
             return;
@@ -56,6 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         floatingPlayer.style.display = 'flex';
         audioPlayer.src = trackUrl;
         trackTitle.textContent = trackTitleText;
+        trackArtist.textContent = trackArtistText;
         
         // Ensure the image updates correctly
         if (trackImageUrl) {
@@ -67,8 +69,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Save data in localStorage for persistence
         localStorage.setItem('currentTrack', trackUrl);
         localStorage.setItem('currentTitle', trackTitleText);
+        localStorage.setItem('currentArtist', trackArtistText);
         localStorage.setItem('trackImageUrl', trackImageUrl || "default-image.jpg");
-    
+        
         audioPlayer.load();
         audioPlayer.play().catch(error => {
             console.error("Autoplay prevented:", error);
@@ -81,18 +84,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (floatingPlayer) {
         let currentTrack = playerData.currentTrack;
         let currentTitle = playerData.currentTitle;
+        let currentArtist = playerData.currentArtist; // Retrieve the artist name
         let currentImageUrl = playerData.currentImageUrl; // Retrieve the image URL
 
 
         if (currentTrack) {
-            loadAndPlayTrack(currentTrack, currentTitle, currentImageUrl);
+            loadAndPlayTrack(currentTrack, currentTitle, currentArtist, currentImageUrl);
         } else {
             const savedTrack = localStorage.getItem('currentTrack');
             const savedTitle = localStorage.getItem('currentTitle');
+            const savedArtist = localStorage.getItem('currentArtist'); // Retrieve the saved artist name
             const savedImageUrl = localStorage.getItem('trackImageUrl'); // Retrieve the saved image URL
 
             if (savedTrack) {
-                loadAndPlayTrack(savedTrack, savedTitle, savedImageUrl);
+                loadAndPlayTrack(savedTrack, savedTitle, savedArtist, savedImageUrl);
                 const savedTime = localStorage.getItem('playbackTime');
                 audioPlayer.currentTime = parseFloat(savedTime) || 0;
             } else {

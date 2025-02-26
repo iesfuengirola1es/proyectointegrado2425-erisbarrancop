@@ -418,6 +418,7 @@ function my_theme_enqueue_scripts() {
     global $post;
     $track_url = '';
     $track_title = '';
+    $track_artist = '';
     $track_image = ''; // New: Track image variable
 
     if ( is_singular( 'single' ) && $post ) { // Check if it's a single post AND we have a $post object
@@ -437,12 +438,24 @@ function my_theme_enqueue_scripts() {
         if (!$track_image) {
             $track_image = get_stylesheet_directory_uri() . '/images/default-track.jpg'; // Fallback image
         }
+
+        $related_artists = get_field('related_artist', $post->ID);
+        $track_artist = '';
+
+        if ($related_artists) {
+            $artist_names = array();
+            foreach ($related_artists as $artist) {
+                $artist_names[] = get_the_title($artist->ID); // Get artist name
+            }
+            $track_artist = implode(', ', $artist_names); // Convert array to a string
+        }
     }
 
     // Pass data to JavaScript
     wp_localize_script( 'floating-player', 'playerData', array(
         'currentTrack' => esc_url($track_url),
         'currentTitle' => esc_js($track_title),
+        'currentArtist'   => esc_js($track_artist),
         'currentImageUrl' => esc_url($track_image) 
     ));
 }

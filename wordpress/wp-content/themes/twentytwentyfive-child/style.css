@@ -633,7 +633,7 @@ body.fade-out #page-transition {
     position: fixed;
     top: 80px;
     left: 20px;
-    width: 330px;
+    width: auto;
     /* Increase Width */
     height: auto;
     background-color: var(--light-bg);
@@ -658,11 +658,10 @@ body.fade-out #page-transition {
 
 #track-title {
     font-weight: bold;
-    color: var(--muted-text);
+    color: var(--secondary-color);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    margin-left: 10px;
 }
 
 #progress-container {
@@ -798,3 +797,19 @@ body.fade-out #page-transition {
     animation: shake 0.5s ease-in-out;
   }
   
+.track-info{
+    display: flex;
+    align-self: center;
+    flex-direction: column;
+}
+
+#track-artist{
+    font-weight: bold;
+    font-size: 14px ;
+    color: var(--muted-text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-self: center;
+    
+}

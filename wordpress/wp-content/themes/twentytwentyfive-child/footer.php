@@ -67,8 +67,13 @@
 
         <div class="player-top-row">
             <img id="track-image" src="" alt="Track Image">
-            <span id="track-title"></span>
+            <div class="track-info">
+                <span id="track-title"></span>
+                <span id="track-artist"></span>
+            </div>
+            
         </div>
+        
         <div id="progress-container">
                 <div id="progress-bar"></div>
         </div>
