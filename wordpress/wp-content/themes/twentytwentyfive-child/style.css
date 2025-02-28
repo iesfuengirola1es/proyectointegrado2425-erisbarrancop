@@ -169,6 +169,7 @@ input:focus, textarea:focus {
     bottom: 0;
     left: 0;
     right: 0;    
+    z-index: 1001;
 }
 
 .site-footer a {
@@ -627,6 +628,7 @@ body.fade-out #page-transition {
     display: flex;
     justify-content: center; /* Center the PayPal button */
     width: 70%;
+    z-index: 1000;
 }
 
 #floating-music-player {

@@ -1,5 +1,5 @@
 <footer class="site-footer"
-    style="border-top:1px solid var(--primary-color);background-color: var(--light-bg); color: var(--input-bg); padding: 20px 0;">
+    style="border-top:1px solid var(--primary-color);background-color: var(--light-bg); color: var(--input-bg); padding: 10px 0;">
     <div class="footer-container container d-flex justify-content-between align-items-center">
         <!-- Footer Navigation -->
         <nav class="footer-navigation" aria-label="Footer Navigation" style="flex-grow: 1;">
