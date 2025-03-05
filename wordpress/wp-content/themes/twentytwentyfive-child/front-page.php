@@ -87,38 +87,52 @@
     <div id="content" class="content-section py-5" style="background-color: var(--mid-bg); border-bottom-left-radius: 10px; border-bottom-right-radius: 10px; padding-top: 8px !important;">
                 
     <div class="container py-5">
-    <div class="row align-items-center mb-3">
-        <div class="col-md-8 text-md-start text-center">  <!-- Text takes 2/3 -->
-            <h2 style="color: var(--primary-color); font-weight: bold; padding-bottom: 20px;">Donate to Artists</h2>
-            <p style="color: var(--secondary-text); font-size: 1.1rem; line-height: 1.6;">
-                Show your support to your favorite artists by donating. Your contributions help them create more amazing music.
-            </p>
+        <!-- Donate to Artists Section -->
+        <div class="row align-items-center mb-5 py-4" style="background: linear-gradient(135deg, rgba(220,78,119,0.9), rgba(142,50,87,0.9)); border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+            <div class="col-md-8 text-md-start text-center ps-md-5 ps-3"> <!-- Added ps-md-5 and ps-3 for left padding -->
+                <h2 style="color: var(--light-bg); font-weight: bold; padding-bottom: 20px;">
+                    <i class="fas fa-donate" style="margin-right: 10px;"></i>Donate to Artists
+                </h2>
+                <p style="color: var(--light-bg); font-size: 1.1rem; line-height: 1.6;">
+                    Show your support to your favorite artists by donating. Your contributions help them create more amazing music and continue their creative journey.
+                </p>
+                <a href="#" class="btn btn-lg mt-3"
+                    style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
+                    Donate Now
+                </a>
+            </div>
+            <div class="col-md-4 text-md-end text-center">
+                <img
+                    src="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/paypal-feature.png'); ?>"
+                    alt="Feature Image 1"
+                    class="img-fluid rounded"
+                    style="max-width: 100%; height: auto; border-radius: 10px;" />
+            </div>
         </div>
-        <div class="col-md-4 text-md-end text-center">  <!-- Image takes 1/3 -->
-            <img
-                src="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/paypal-feature.png'); ?>"
-                alt="Feature Image 1"
-                class="img-fluid rounded"
-                style="max-width: 100%; height: auto; border-radius: 10px;" />
-        </div>
-    </div>
 
-    <div class="row align-items-center mb-3 flex-md-row-reverse">
-        <div class="col-md-8 text-md-start text-center">  <!-- Text takes 2/3 -->
-            <h2 style="color: var(--primary-color); font-weight: bold; padding-bottom: 20px;">Join Our Community</h2>
-            <p style="color: var(--secondary-text); font-size: 1.1rem; line-height: 1.6;">
-                Become a part of our vibrant music community. Share your favorite tracks, find artists, and be the first to hear exclusive releases.
-            </p>
-        </div>
-        <div class="col-md-4 text-md-start text-center">  <!-- Image takes 1/3 -->
-            <img
-                src="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/player-feature.png'); ?>"
-                alt="Feature Image 2"
-                class="img-fluid rounded"
-                style="max-width: 100%; height: auto; border-radius: 10px;" />
+        <!-- Join Our Community Section -->
+        <div class="row align-items-center mb-5 py-4 flex-md-row-reverse" style="background: linear-gradient(135deg, rgba(142,50,87,0.9), rgba(220,78,119,0.9)); border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
+            <div class="col-md-8 text-md-start text-center ps-md-5 ps-3"> <!-- Added ps-md-5 and ps-3 for left padding -->
+                <h2 style="color: var(--light-bg); font-weight: bold; padding-bottom: 20px;">
+                    <i class="fas fa-users" style="margin-right: 10px;"></i>Join Our Community
+                </h2>
+                <p style="color: var(--light-bg); font-size: 1.1rem; line-height: 1.6;">
+                    Become a part of our vibrant music community. Share your favorite tracks, discover new artists, and be the first to hear exclusive releases.
+                </p>
+                <a href="#" class="btn btn-lg mt-3"
+                    style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
+                    Join Now
+                </a>
+            </div>
+            <div class="col-md-4 text-md-start text-center">
+                <img
+                    src="<?php echo esc_url(get_stylesheet_directory_uri() . '/images/player-feature.png'); ?>"
+                    alt="Feature Image 2"
+                    class="img-fluid rounded"
+                    style="max-width: 100%; height: auto; border-radius: 10px;" />
+            </div>
         </div>
     </div>
-</div>
     
         <div class="container">
             <div class="row">
@@ -135,7 +149,7 @@
                 ?>
 
                 <?php if ($singles_query->have_posts()): ?>
-                    <h2 class="text-center" style="color: var(--primary-color); font-weight: bold; margin-bottom: 20px;">
+                    <h2 class="text-center" style="color: var(--primary-color); font-weight: bold; margin-bottom: 40px;">
                         Latest Singles</h2>
                     <div class="row">
                         <?php while ($singles_query->have_posts()):
@@ -190,7 +204,7 @@
 
                 <?php if ($albums_query->have_posts()): ?>
                     <h2 class="text-center"
-                        style="color: var(--primary-color); font-weight: bold; margin-top: 40px; margin-bottom: 20px;">
+                        style="color: var(--primary-color); font-weight: bold; margin-top: 60px; margin-bottom: 40px;">
                         Latest Albums</h2>
                     <div class="row">
                         <?php while ($albums_query->have_posts()):
@@ -277,10 +291,6 @@
             form.style.display = 'none';
         }, 400);
     });
-
-
-
 </script>
-
 
 <?php get_footer(); ?>
