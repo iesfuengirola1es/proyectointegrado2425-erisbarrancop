@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
         onApprove: function (data, actions) {
             return actions.order.capture().then(function (details) {
                 alert("Payment successful! Transaction ID: " + details.id);
-                // Handle success (e.g., store payment details in WordPress)
 
                 // Trigger the download of the track
                 if (trackFile) {

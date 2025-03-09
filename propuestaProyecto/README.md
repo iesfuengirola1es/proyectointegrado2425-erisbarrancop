@@ -1,8 +1,8 @@
 # 🎵 INTRODUCCIÓN
 
-En los últimos años, el consumo de **música digital** ha crecido de forma notable. Al mismo tiempo, los artistas independientes cada vez lo tienen mas dificil para dar a conocer sus proyectos y recibir algun tipo de beneficio. Con Together estos artistas pueden tener una comunidad junto a otros artistas y entusiastas de la musica, en la cual podran donar, escuchar y conocerlo.
+En los últimos años, el consumo de **música digital** ha crecido de forma notable. Al mismo tiempo, los artistas independientes cada vez lo tienen mas dificil para dar a conocer sus proyectos y recibir algun tipo de beneficio. Con Together estos artistas pueden tener una comunidad junto a otros artistas y entusiastas de la musica, en la cual podran donar, escuchar y conocerlos.
 
-🎯 **Este proyecto** tiene como objetivo desarrollar una comunidad musical en la que artistas puedan compartir sus proyectos musicales y recibir donaciones por ellosg.
+🎯 **Este proyecto** tiene como objetivo desarrollar una comunidad musical en la que artistas puedan compartir sus proyectos musicales y recibir donaciones por ellos.
 
 ### Características destacadas:  
 - **Búsqueda en tiempo real.**  
@@ -73,7 +73,10 @@ Crear una plataforma web en **WordPress** para la compra de música digital y f�
 - 🌐 [NPM - Extract Colors](https://www.npmjs.com/package/extract-colors)  
 - 🌐 [Advanced Custom Fields Plugin](https://www.advancedcustomfields.com)
 - 🌐 [Stack Overflow y otros foros técnicos](https://stackoverflow.com/) 
-   
+- 🌐 [PayPal for Developers API](https://developer.paypal.com/docs/api/)
+- 🌐 [phpMyAdmin Documentation](https://www.phpmyadmin.net/docs/) 
+- 🌐 [MySQL](https://dev.mysql.com/doc/) 
+
 
 ---
 
