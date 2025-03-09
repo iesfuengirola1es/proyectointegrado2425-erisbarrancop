@@ -64,7 +64,7 @@ $youtube_link = get_field('youtube_link');
 
                                 if ($soundcloud_link) {
                                     echo '<div class="col-md-6 mt-4">';
-                                    echo '<h4 class="mb-3" style="font-weight: bold;">SoundCloud:</h4>';
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">Soundcloud:</h4>';
                                     echo '<div id="soundcloud-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
                                     echo '<a href="' . esc_url($soundcloud_link) . '" target="_blank" style="color: var(--primary-color); text-decoration: none;">';
                                     echo '<i class="fab fa-soundcloud" style="margin-right: 10px; color: var(--primary-color);"></i>'; // SoundCloud icon
