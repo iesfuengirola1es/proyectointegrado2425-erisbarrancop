@@ -1,7 +1,12 @@
 <?php get_header(); 
 $genre = get_field('artist_genre');
 $artist_location = get_field('location');
+$soundcloud_link = get_field('soundcloud_link');
+$youtube_link = get_field('youtube_link');
 ?>
+
+<!-- Include Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 <div class="container-fluid" style="background-color: var(--light-bg); color: var(--primary-hover); font-family: 'Lato', sans-serif;">
     <!-- Hero Section -->
@@ -35,19 +40,49 @@ $artist_location = get_field('location');
 
                              <?php 
                             // Display genre and location
-                            if ($genre || $artist_location) {
+                            if ($genre || $artist_location || $soundcloud_link || $youtube_link) {
                                 echo '<div class="row mb-4">'; // Added mb-4 for spacing
                                 if ($genre) {
                                     echo '<div class="col-md-6 mt-4">';
                                     echo '<h4 class="mb-3" style="font-weight: bold;">Genre:</h4>';
-                                    echo '<div id="genre-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($genre) . '</div>';
+                                    echo '<div id="genre-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
+                                    echo '<i class="fas fa-music" style="margin-right: 10px; color: var(--primary-color);"></i>'; // Music icon inside the container
+                                    echo esc_html($genre);
+                                    echo '</div>';
                                     echo '</div>';
                                 }
                                 
                                 if ($artist_location) {
-                                      echo '<div class="col-md-6 mt-4">';
+                                    echo '<div class="col-md-6 mt-4">';
                                     echo '<h4 class="mb-3" style="font-weight: bold;">Location:</h4>';
-                                      echo '<div id="location-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">' . esc_html($artist_location) . '</div>';
+                                    echo '<div id="location-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
+                                    echo '<i class="fas fa-map-marker-alt" style="margin-right: 10px; color: var(--primary-color);"></i>'; // Map marker icon inside the container
+                                    echo esc_html($artist_location);
+                                    echo '</div>';
+                                    echo '</div>';
+                                }
+
+                                if ($soundcloud_link) {
+                                    echo '<div class="col-md-6 mt-4">';
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">SoundCloud:</h4>';
+                                    echo '<div id="soundcloud-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
+                                    echo '<a href="' . esc_url($soundcloud_link) . '" target="_blank" style="color: var(--primary-color); text-decoration: none;">';
+                                    echo '<i class="fab fa-soundcloud" style="margin-right: 10px; color: var(--primary-color);"></i>'; // SoundCloud icon
+                                    echo esc_html($soundcloud_link);
+                                    echo '</a>';
+                                    echo '</div>';
+                                    echo '</div>';
+                                }
+
+                                if ($youtube_link) {
+                                    echo '<div class="col-md-6 mt-4">';
+                                    echo '<h4 class="mb-3" style="font-weight: bold;">YouTube:</h4>';
+                                    echo '<div id="youtube-content" style="white-space: pre-wrap; word-wrap: break-word; background-color: var(--mid-bg); padding: 15px; border-radius: 10px; box-shadow: inset 0 2px 4px var(--primary-hover); transition: box-shadow 0.3s ease;">';
+                                    echo '<a href="' . esc_url($youtube_link) . '" target="_blank" style="color: var(--primary-color); text-decoration: none;">';
+                                    echo '<i class="fab fa-youtube" style="margin-right: 10px; color: var(--primary-color);"></i>'; // YouTube icon
+                                    echo esc_html($youtube_link);
+                                    echo '</a>';
+                                    echo '</div>';
                                     echo '</div>';
                                 }
                                 echo '</div>';

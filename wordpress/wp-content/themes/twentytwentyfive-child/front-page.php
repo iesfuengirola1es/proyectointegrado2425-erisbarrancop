@@ -10,7 +10,8 @@
             <h1 class="display-4" style="font-weight: bold; letter-spacing: 1px; margin-bottom: 20px;">
                 Welcome to <?php bloginfo('name'); ?>
             </h1>
-            <p class="lead" style="font-size: 1.2rem; margin-bottom: 30px;">Your gateway to awesome content and ideas.
+            <p class="lead" style="font-size: 1.2rem; margin-bottom: 30px;">
+                Discover and support independent artists from around the world.
             </p>
 
             <?php
@@ -94,9 +95,12 @@
                     <i class="fas fa-donate" style="margin-right: 10px;"></i>Donate to Artists
                 </h2>
                 <p style="color: var(--light-bg); font-size: 1.1rem; line-height: 1.6;">
-                    Show your support to your favorite artists by donating. Your contributions help them create more amazing music and continue their creative journey.
+                    Show your support to your favorite artists by donating. Your contributions help them create more amazing music and continue their creative journey. While you get to enjoy and share their work.
                 </p>
-                <a href="#" class="btn btn-lg mt-3"
+                <p style="color: var(--light-bg); font-size: 1.1rem; line-height: 1.6;">
+                    Your donations are secure and go directly to the artists. You can donate any amount you like, and every bit helps.
+                </p>
+                <a href="<?php echo get_post_type_archive_link('single')?>" class="btn btn-lg mt-3"
                     style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
                     Donate Now
                 </a>
@@ -114,15 +118,13 @@
         <div class="row align-items-center mb-5 py-4 flex-md-row-reverse" style="background: linear-gradient(135deg, rgba(142,50,87,0.9), rgba(220,78,119,0.9)); border-radius: 15px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);">
             <div class="col-md-8 text-md-start text-center ps-md-5 ps-3"> <!-- Added ps-md-5 and ps-3 for left padding -->
                 <h2 style="color: var(--light-bg); font-weight: bold; padding-bottom: 20px;">
-                    <i class="fas fa-users" style="margin-right: 10px;"></i>Join Our Community
+                    <i class="fas fa-users" style="margin-right: 10px;"></i>Listen to Music, Share, and Connect
                 </h2>
                 <p style="color: var(--light-bg); font-size: 1.1rem; line-height: 1.6;">
-                    Become a part of our vibrant music community. Share your favorite tracks, discover new artists, and be the first to hear exclusive releases.
+                    Join our community of music lovers and artists. Discover new music, share your tracks, and connect with artists from around the world. Get access to exclusive content, and more.
                 </p>
-                <a href="#" class="btn btn-lg mt-3"
-                    style="background-color: var(--light-bg); color: var(--primary-color)!important; padding: 12px 40px; border-radius: 50px; text-transform: uppercase; font-weight: bold; transition: all 0.3s ease;">
-                    Join Now
-                </a>
+                <p style="color: var(--light-bg); font-size: 1.1rem; line-height: 1.6;">
+                    Connect with like-minded individuals, share your thoughts, and enjoy the vibrant community of music enthusiasts. Whether you're an artist or a fan, there's a place for you here.
             </div>
             <div class="col-md-4 text-md-start text-center">
                 <img
